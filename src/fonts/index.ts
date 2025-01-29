@@ -1,6 +1,10 @@
 import { Space_Grotesk } from "next/font/google";
 import { Poppins } from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
 
+export const bricolageGrotesqueRegular = Bricolage_Grotesque({ subsets: ['latin'], weight: "400" });
+export const bricolageGrotesqueMedium = Bricolage_Grotesque({ subsets: ['latin'], weight: "500" });
+export const bricolageGrotesqueBold = Bricolage_Grotesque({ subsets: ['latin'], weight: "700" });
 
 
 export const spaceGroteskRegular = Space_Grotesk({ subsets: ['latin'], weight: "400" });
