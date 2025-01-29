@@ -5,3 +5,7 @@
 :root {
   background-color: #141d29;
 }
+
+.heading {
+  @apply text-2xl
+}
