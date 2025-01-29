@@ -10,13 +10,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        'text': '#eae9fc',
+        'text': '#fff',
         'background': '#141d29',
-        'primary': '#eb244b',
+        'primary': '#e93559',
         'secondary': '#faebd7',
         'accent': '#8b53af',
       },
     },
+  },
+  daisyui: {
+    themes: ["light", "dark", "cupcake"],
   },
   plugins: [daisyui],
 } satisfies Config;
