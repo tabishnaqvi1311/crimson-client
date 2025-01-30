@@ -11,7 +11,7 @@ export default function Hero() {
                         <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent ">Youtubers and Talent</span>&nbsp;Connect
                     </h1>
                     <p className={`${spaceGroteskMedium.className} text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto`}>
-                        Crimson is the definitive job board YouTubers to find skilled professionals and for talent to discover exciting opportunities in content creation.
+                        Crimson is the definitive job board for YouTubers to find skilled professionals and for talent to discover exciting opportunities in content creation.
                     </p>
                     <div className={`space-x-4 ${spaceGroteskMedium.className}`}>
                         <button className="btn btn-ghost bg-primary hover:bg-primary px-6 hover:px-8  transition-all duration-200 text-text text-lg">Post A Job</button>

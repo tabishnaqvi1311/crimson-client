@@ -20,7 +20,8 @@ export default function Page() {
                 <>
                     <p className={`heading ${PoppinsMedium.className} text-text`}>Great! Now check your inbox.</p>
                     <p className={spaceGroteskRegular.className}>Please check your inbox at {email}</p>
-                    <Link href={'/signin'} className={`${spaceGroteskRegular.className} underline hover:text-text`}>Use another email</Link>
+                    <p className={spaceGroteskRegular.className}>You may close this tab.</p>
+                    <Link href={'/signin'} className={`${spaceGroteskRegular.className} underline hover:text-text text-primary`}>Use another email</Link>
                 </>
             ) : (<span className="spinner" />)}
         </main>

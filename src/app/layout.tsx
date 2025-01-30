@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import { AuthProvider } from "@/context/AuthContext";
+import AuthContextProvider from "@/components/auth-context-provider";
 
 export const metadata: Metadata = {
   title: "Crimson | The Definitive Job Board for Youtubers",
@@ -14,11 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={``}
-      >
-        <Navbar/>
-        {children}
+      <body>
+        <AuthContextProvider>
+          <Navbar />
+          {children}
+        </AuthContextProvider>
       </body>
     </html>
   );
