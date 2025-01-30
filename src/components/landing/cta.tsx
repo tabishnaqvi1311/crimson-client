@@ -1,6 +1,7 @@
 
 import { bricolageGrotesqueBold } from "@/fonts"
 import { ArrowRight } from "lucide-react"
+import Link from "next/link"
 
 export default function CTA() {
     return (
@@ -10,9 +11,9 @@ export default function CTA() {
                 <p className="text-xl mb-8  max-w-2xl mx-auto text-gray-300">
                     Join Crimson today and connect with the talent you need to take your content to the next level.
                 </p>
-                <button  className="btn bg-[#e93559] text-white hover:bg-[#c52c4b]">
+                <Link href={"/signin"}  className="btn bg-[#e93559] text-white hover:bg-[#c52c4b]">
                     Get Started Now <ArrowRight className="ml-2 w-5 h-5" />
-                </button>
+                </Link>
             </div>
         </section>
     )
