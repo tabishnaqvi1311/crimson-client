@@ -2,7 +2,7 @@
 import { PoppinsMedium, spaceGroteskRegular } from "@/fonts";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Page() {
     const [email, setEmail] = useState<string>("");

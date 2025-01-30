@@ -56,8 +56,8 @@ export default function Page() {
             localStorage.setItem("emailHold", email);
         } catch (error: any) {
             setLoading(false);
+            console.log(error.message);
             return;
-            // console.log(error.message);
         }
         redirect("/auth-hold");
     }

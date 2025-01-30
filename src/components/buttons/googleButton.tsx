@@ -1,7 +1,7 @@
 'use client'
 
 import Image from "next/image"
-import {ToastContainer, toast} from "react-toastify";
+import {toast} from "react-toastify";
 
 export default function GoogleButton({
     role, loading

@@ -1,4 +1,4 @@
-import { bricolageGrotesqueBold, PoppinsBold, spaceGroteskRegular } from "@/fonts"
+import { bricolageGrotesqueBold, spaceGroteskRegular } from "@/fonts"
 import { Camera, Search, DollarSign, Edit, Star } from "lucide-react"
 
 const features = [

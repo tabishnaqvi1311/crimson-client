@@ -1,5 +1,5 @@
 import { bricolageGrotesqueBold, spaceGroteskMedium } from "@/fonts";
-import HeroBg from "./hero-background";
+// import HeroBg from "./hero-background";
 
 export default function Hero() {
     return (

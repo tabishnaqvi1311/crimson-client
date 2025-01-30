@@ -10,6 +10,11 @@
   @apply text-2xl
 }
 
+::selection {
+  background-color: #e93559;
+  color: white;
+}
+
 .body {
   --radius: 8px;
   --border: 4px;
