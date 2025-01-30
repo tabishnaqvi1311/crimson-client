@@ -1,5 +1,6 @@
 'use client'
 
+import apiUrl from "@/constant/config";
 import Image from "next/image"
 import {toast} from "react-toastify";
 
@@ -20,7 +21,7 @@ export default function GoogleButton({
                 toast.error("Invalid role", {theme: "dark"})
                 return;
             }
-            window.location.href = `http://localhost:8080/auth/google?role=${role}`
+            window.location.href = `${apiUrl}/auth/google?role=${role}`
 
             }}
             className="cursor-pointer text-black flex gap-2 items-center bg-white px-10 w-fit py-2 rounded-lg font-medium text-md hover:bg-zinc-300 transition-all ease-in duration-200 justify-center"

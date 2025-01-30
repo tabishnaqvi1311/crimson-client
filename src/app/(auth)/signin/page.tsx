@@ -3,6 +3,7 @@
 import GoogleButton from "@/components/buttons/googleButton";
 import PublicRoute from "@/components/guards/public-route";
 import OrDivider from "@/components/or-divider";
+import apiUrl from "@/constant/config";
 import { spaceGroteskMedium, spaceGroteskRegular } from "@/fonts";
 import { redirect } from "next/navigation";
 import { useState } from "react";
@@ -33,7 +34,7 @@ export default function Page() {
 
         setLoading(true);
         try {
-            const response = await fetch("http://localhost:8080/auth/login", {
+            const response = await fetch(`${apiUrl}/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
