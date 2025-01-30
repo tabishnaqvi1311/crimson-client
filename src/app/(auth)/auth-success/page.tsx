@@ -12,7 +12,7 @@ export default function Page() {
         const params = new URLSearchParams(hash);
         const value = params.get("token") as string;
         login(value);
-    }, [])
+    }, [login])
 
     return <LoadingSpinner/>
 }

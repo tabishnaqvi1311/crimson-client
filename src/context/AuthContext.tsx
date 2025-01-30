@@ -1,6 +1,6 @@
 import { AuthContextType, TokenPayloadType } from "@/types";
 import { useRouter } from "next/navigation";
-import { createContext, useEffect, useState, } from "react";
+import { createContext, useCallback, useEffect, useState, } from "react";
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -12,7 +12,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     const router = useRouter();
 
-    const checkAuth = () => {
+    const logout = useCallback(() => {
+        localStorage.removeItem("crimson-token");
+        setUserId(null);
+        setRole(null);
+        setIsAuthenticated(false);
+        setLoading(false);
+        router.push("/");
+    }, [router])
+
+    const checkAuth = useCallback(() => {
         const token = localStorage.getItem("crimson-token");
 
         if (!token) {
@@ -43,26 +52,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setRole(payload.role)
         setIsAuthenticated(true);
         setLoading(false);
-    }
+    }, [logout])
 
-    const login = (token: string) => {
+    const login = useCallback((token: string) => {
         localStorage.setItem("crimson-token", token);
         checkAuth();
         router.push("/feed");
-    }
-
-    const logout = () => {
-        localStorage.removeItem("crimson-token");
-        setUserId(null);
-        setRole(null);
-        setIsAuthenticated(false);
-        setLoading(false);
-        router.push("/");
-    }
+    }, [checkAuth, router])
 
     useEffect(() => {
         checkAuth();
-    }, [])
+    }, [checkAuth])
 
     return (
         <AuthContext.Provider
