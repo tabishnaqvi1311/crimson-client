@@ -115,7 +115,7 @@ export default function Page() {
                         disabled={loading}
                     >
                         {
-                            !loading ? "Send me a login link" : <span className="loading loading-spinner" />
+                            !loading ? "Send me a login link" : <span className="loading loading-spinner text-text" />
                         }
                     </button>
                 </label>

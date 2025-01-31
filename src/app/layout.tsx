@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import AuthContextProvider from "@/components/auth-context-provider";
+import Sidebar from "@/components/sidebar/sidebar";
 
 export const metadata: Metadata = {
   title: "Crimson | The Definitive Job Board for Youtubers",
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body>
         <AuthContextProvider>
           <Navbar />
+          <Sidebar />
           {children}
         </AuthContextProvider>
       </body>

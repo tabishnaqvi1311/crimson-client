@@ -12,6 +12,7 @@ export default function Page() {
         if(!email) redirect('/');
         setEmail(email);
         // TODO: clear email from local storage when user goes to dashboard
+        // TODO: close this tab when user changes tabs
     }, []);
 
     return (
