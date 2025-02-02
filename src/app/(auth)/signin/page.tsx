@@ -54,7 +54,6 @@ export default function Page() {
             toast.success("Check your email for the login link", {
                 theme: 'dark'
             })
-            setLoading(false);
             localStorage.setItem("emailHold", email);
         } catch (error: any) {
             setLoading(false);

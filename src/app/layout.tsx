@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar";
-import AuthContextProvider from "@/components/auth-context-provider";
+import AuthContextProvider from "@/components/providers/auth-context-provider";
 import Sidebar from "@/components/sidebar/sidebar";
+import ReactQueryProvider from "@/components/providers/react-query-provider";
 
 export const metadata: Metadata = {
   title: "Crimson | The Definitive Job Board for Youtubers",
@@ -18,9 +19,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <AuthContextProvider>
-          <Navbar />
-          <Sidebar />
-          {children}
+          <ReactQueryProvider>
+            <Navbar />
+            <Sidebar />
+            {children}
+          </ReactQueryProvider>
         </AuthContextProvider>
       </body>
     </html>

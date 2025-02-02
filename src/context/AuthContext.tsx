@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const login = useCallback((token: string) => {
         localStorage.setItem("crimson-token", token);
         checkAuth();
-        router.push("/feed");
+        router.push("/discover");
     }, [checkAuth, router])
 
     useEffect(() => {

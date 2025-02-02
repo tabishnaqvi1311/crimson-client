@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
     { icon: Home, text: "Home", href: "/home" },
-    { icon: LayoutGrid, text: "Feed", href: "/feed" },
+    { icon: LayoutGrid, text: "Discover", href: "/discover" },
     { icon: Briefcase, text: "My Jobs", href: "/jobs" },
 ]
 
