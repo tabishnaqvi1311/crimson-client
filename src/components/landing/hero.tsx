@@ -1,4 +1,5 @@
 import { bricolageGrotesqueBold, spaceGroteskMedium } from "@/fonts";
+import Link from "next/link";
 // import HeroBg from "./hero-background";
 
 export default function Hero() {
@@ -14,8 +15,8 @@ export default function Hero() {
                         Crimson is the definitive job board for YouTubers to find skilled professionals and for talent to discover exciting opportunities in content creation.
                     </p>
                     <div className={`space-x-4 ${spaceGroteskMedium.className}`}>
-                        <button className="btn btn-ghost bg-primary hover:bg-primary px-6 hover:px-8  transition-all duration-200 text-text text-lg">Post A Job</button>
-                        <button className="btn btn-ghost bg-accent hover:bg-accent px-6 hover:px-8 transition-all duration-200 text-text text-lg">Find Work</button>
+                        <Link href={"/signin"} className="btn btn-ghost bg-primary hover:bg-primary px-6 hover:px-8  transition-all duration-200 text-text text-lg">Post A Job</Link>
+                        <Link href={'/signin'} className="btn btn-ghost bg-accent hover:bg-accent px-6 hover:px-8 transition-all duration-200 text-text text-lg">Find Work</Link>
                     </div>
                 </div>
             </section>

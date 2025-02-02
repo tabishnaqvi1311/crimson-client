@@ -7,6 +7,7 @@ export const AuthContext = createContext<AuthContextType | null>(null);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [userId, setUserId] = useState<string | null>(null);
     const [role, setRole] = useState<string | null>(null);
+    const [picture, setPicture] = useState<string | null | undefined>(null);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -16,6 +17,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         localStorage.removeItem("crimson-token");
         setUserId(null);
         setRole(null);
+        setPicture(null);
         setIsAuthenticated(false);
         setLoading(false);
         router.push("/");
@@ -50,6 +52,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
         setUserId(payload.userId);
         setRole(payload.role)
+        setPicture(payload.picture);
         setIsAuthenticated(true);
         setLoading(false);
     }, [logout])
@@ -57,7 +60,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const login = useCallback((token: string) => {
         localStorage.setItem("crimson-token", token);
         checkAuth();
-        router.push("/feed");
+        router.push("/discover");
     }, [checkAuth, router])
 
     useEffect(() => {
@@ -72,6 +75,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 isAuthenticated,
                 login,
                 logout,
+                picture,
                 loading
             }}>
             {children}

@@ -54,7 +54,6 @@ export default function Page() {
             toast.success("Check your email for the login link", {
                 theme: 'dark'
             })
-            setLoading(false);
             localStorage.setItem("emailHold", email);
         } catch (error: any) {
             setLoading(false);
@@ -115,7 +114,7 @@ export default function Page() {
                         disabled={loading}
                     >
                         {
-                            !loading ? "Send me a login link" : <span className="loading loading-spinner" />
+                            !loading ? "Send me a login link" : <span className="loading loading-spinner text-text" />
                         }
                     </button>
                 </label>
