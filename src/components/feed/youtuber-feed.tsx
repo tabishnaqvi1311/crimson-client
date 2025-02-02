@@ -13,7 +13,7 @@ export default function YoutuberFeed() {
     const query = useQuery({
         queryKey: ["youtuber-feed"],
         queryFn: async () => {
-            const response = await fetch(`${apiUrl}/users/TALENT`, {
+            const response = await fetch(`${apiUrl}/users/roles/TALENT`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

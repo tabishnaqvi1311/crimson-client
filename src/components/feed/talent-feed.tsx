@@ -9,7 +9,7 @@ export default function TalentFeed() {
     const query = useQuery({
         queryKey: ["talent-feed"],
         queryFn: async () => {
-            const response = await fetch(`${apiUrl}/users/YOUTUBER`, {
+            const response = await fetch(`${apiUrl}/users/roles/YOUTUBER`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
