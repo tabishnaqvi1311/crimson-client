@@ -4,9 +4,8 @@ import LoadingSpinner from "../loading";
 import Image from "next/image";
 import { CircleUserRound } from "lucide-react";
 import { User } from "@/types";
+import Modal from "../modal/modal";
 
-
-// type Feed = Talent[]
 
 export default function YoutuberFeed() {
 
@@ -20,15 +19,15 @@ export default function YoutuberFeed() {
                     "Authorization": `Bearer ${localStorage.getItem("crimson-token")}`
                 },
             })
-            if(!response.ok) throw new Error(`request failed with status ${response.status}`);
+            if (!response.ok) throw new Error(`request failed with status ${response.status}`);
             return response.json();
         }
     })
 
-    if(query.status === "pending") return <LoadingSpinner/>
+    if (query.status === "pending") return <LoadingSpinner />
 
-    if(query.status === "error") return <p className="text-primary text-center">
-        An error has occurred 
+    if (query.status === "error") return <p className="text-primary text-center">
+        An error has occurred
     </p>
 
     return (
@@ -36,11 +35,11 @@ export default function YoutuberFeed() {
             {
                 query.data.users.map((talent: User) => (
                     <div key={talent.id} className="pl-[7rem] pt-12">
-                        {talent.picture 
+                        {talent.picture
                             ?
                             <Image src={talent.picture} alt="user" height={40} width={40} className="rounded-full" />
                             :
-                            <CircleUserRound size={30}/>
+                            <CircleUserRound size={30} />
                         }
                         <div>
                             <p className="text-lg text-primary">{talent.name}</p>
@@ -49,6 +48,7 @@ export default function YoutuberFeed() {
                     </div>
                 ))
             }
+            <Modal />
         </>
     )
 }
