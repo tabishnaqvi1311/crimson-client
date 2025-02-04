@@ -6,4 +6,6 @@ export type AuthContextType = {
     logout: () => void;
     picture: string | null | undefined;
     loading: boolean;
+    hasVerified: boolean;
+    verify: () => void;
 }

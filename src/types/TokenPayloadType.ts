@@ -3,4 +3,5 @@ export type TokenPayloadType = {
     role: string;
     exp: number;
     picture?: string;
+    isVerified?: boolean;
 } | null

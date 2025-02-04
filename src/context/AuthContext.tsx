@@ -9,9 +9,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [role, setRole] = useState<string | null>(null);
     const [picture, setPicture] = useState<string | null | undefined>(null);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+    const [hasVerified, setHasVerified] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
 
     const router = useRouter();
+
+    const verify = (() => {
+        setHasVerified(true);
+    })
 
     const logout = useCallback(() => {
         localStorage.removeItem("crimson-token");
@@ -19,6 +24,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setRole(null);
         setPicture(null);
         setIsAuthenticated(false);
+        setHasVerified(false);
         setLoading(false);
         router.push("/");
     }, [router])
@@ -50,6 +56,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             logout(); return;
         }
 
+        if(payload.role === "YOUTUBER") {
+            if(!payload.isVerified) setHasVerified(false);
+            else setHasVerified(true);
+        }
+
         setUserId(payload.userId);
         setRole(payload.role)
         setPicture(payload.picture);
@@ -60,7 +71,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const login = useCallback((token: string) => {
         localStorage.setItem("crimson-token", token);
         checkAuth();
-        router.push("/discover");
+        router.push("/discover?show=true");
     }, [checkAuth, router])
 
     useEffect(() => {
@@ -76,6 +87,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 login,
                 logout,
                 picture,
+                hasVerified,
+                verify,
                 loading
             }}>
             {children}
