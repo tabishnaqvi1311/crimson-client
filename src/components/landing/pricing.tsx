@@ -1,4 +1,4 @@
-import { bricolageGrotesqueBold, spaceGroteskRegular } from "@/fonts"
+import { bricolageGrotesqueBold, spaceGroteskMedium, spaceGroteskRegular } from "@/fonts"
 import { Check } from "lucide-react"
 import Link from "next/link"
 
@@ -32,7 +32,7 @@ export default function Pricing() {
             <Link href={"/signin"} className="w-full btn mt-5 bg-[#e93559] text-white hover:bg-[#c52c4b]">Get Started</Link>
           </div>
           <div className="px-6 pb-4 ">
-            <p className="text-center font-semibold text-primary">Talent joins for free!</p>
+            <p className={`${spaceGroteskMedium.className} text-center font-semibold text-accent`}>Talent joins for free!</p>
           </div>
         </div>
       </div>

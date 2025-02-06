@@ -20,7 +20,7 @@ export default function YoutuberFeed() {
                 },
             })
             if (!response.ok) throw new Error(`request failed with status ${response.status}`);
-            return response.json();
+            return await response.json();
         }
     })
 

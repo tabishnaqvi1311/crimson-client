@@ -1,5 +1,6 @@
 import PublicRoute from "@/components/guards/public-route";
 import CTA from "@/components/landing/cta";
+import FAQ from "@/components/landing/faq";
 import Features from "@/components/landing/features";
 import Footer from "@/components/landing/footer";
 import Hero from "@/components/landing/hero";
@@ -16,6 +17,7 @@ export default function Page() {
           <Hero />
           <Features />
           <Pricing />
+          <FAQ/>
           <CTA />
           <Footer />
         </div>
