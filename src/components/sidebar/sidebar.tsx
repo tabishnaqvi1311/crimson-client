@@ -22,7 +22,7 @@ export default function Sidebar() {
     return isAuthenticated &&
         <nav className="fixed left-2 bg-text top-[calc(4rem+2rem)] bottom-5 flex flex-col justify-between w-20 rounded-md py-8">
             <div className="flex justify-center items-center">
-                <span className={`text-4xl text-primary ${spaceGroteskBold.className}`}>C</span>
+                <span className={`text-5xl text-primary select-none ${spaceGroteskBold.className}`}>c</span>
             </div>
             <div className="flex flex-col items-center space-y-10">
                 {navItems.map((item, i) => {

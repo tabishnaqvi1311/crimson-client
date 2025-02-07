@@ -14,7 +14,7 @@ export default function Navbar() {
         <>
             <div className={`navbar px-7 py-4 ${spaceGroteskRegular.className} border-b-2 border-gray-700`}>
                 <div className="flex-1">
-                    <Link href="/" className={`text-4xl text-primary`}>Crimson</Link>
+                    <Link href="/" className={`text-4xl text-primary select-none`}>crimson</Link>
                 </div>
                 <div className="flex-0">
                     {

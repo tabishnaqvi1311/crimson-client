@@ -51,7 +51,7 @@ export default function FAQ() {
                 <div className="lg:w-1/2">
                     <h1 className={`${bricolageGrotesqueBold.className} text-3xl sm:text-4xl font-bold mb-6 text-text`}>Frequently Asked Questions</h1>
                     <p>Have another question? Contact me on&nbsp;
-                        <a href="x.com/gunhawke23" className="link">Twitter</a>
+                        <a href="https://x.com/gunhawke23" className="link">Twitter</a>
                         &nbsp;or by&nbsp;
                         <a href="mailto:tabish.naqvi2003@gmail.com" className="link">Email</a>.</p>
                 </div>
