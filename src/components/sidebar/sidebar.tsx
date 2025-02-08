@@ -26,7 +26,7 @@ export default function Sidebar() {
             </div>
             <div className="flex flex-col items-center space-y-10">
                 {navItems.map((item, i) => {
-                    const active = pathname === item.href;
+                    const active = pathname.includes(item.href);
                     return (
                         <Link key={i} href={item.href} className={`group ${active && "pointer-events-none"}`}>
                             <div className="flex flex-col items-center">

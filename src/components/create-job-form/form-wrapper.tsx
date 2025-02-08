@@ -1,11 +1,11 @@
+import { PoppinsMedium, spaceGroteskMedium } from "@/fonts";
 import { FormWrapperProps } from "@/types";
 
-export default function FormWrapper({title, subtitle, children}: FormWrapperProps){
+export default function FormWrapper({title, children}: FormWrapperProps){
     return (
-        <div>
-            <h1>{title}</h1>
-            <p>{subtitle}</p>
-            <div>
+        <div className="flex flex-col space-y-4 p-4  ">
+            <h1 className={`${PoppinsMedium.className} text-2xl `}>{title}</h1>
+            <div className={`${spaceGroteskMedium.className} flex flex-col w-full items-center`}>
                 {children}
             </div>
         </div>

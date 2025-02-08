@@ -10,12 +10,14 @@ export default function TitleSubForm({
     return (
 
         <FormWrapper title="What position are you recruiting for?">
-            <label>Job Title</label>
             <input
                 type="text"
                 required
                 value={title}
                 onChange={(e) => updateFields({ title: e.target.value })}
+                className="input input-bordered w-full max-w-xs "
+                placeholder="eg. Video Editor"
+                data-theme="light"
             />
         </FormWrapper>
     )

@@ -109,7 +109,7 @@ export default function Page() {
                         <span className="label-text-alt">If you don't have an account, we'll create one for you</span>
                     </div>
                     <button
-                        className="btn btn-neutral hover:bg-[#eb244b] bg-primary text-base mt-3 disabled:bg-[#eb244b]" data-theme="light"
+                        className="button-primary btn-neutral text-base mt-3 disabled:bg-[#eb244b]" data-theme="light"
                         onClick={() => handleSubmit()}
                         disabled={loading}
                     >
