@@ -7,14 +7,11 @@ import { toast, ToastContainer } from "react-toastify";
 import LoadingSpinner from "../loading";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import TitleSubForm from "./title-sub-form";
-import DescriptionSubForm from "./description-sub-form";
-import SalarySubForm from "./salary-sub-form";
-import LocationSubForm from "./location-sub-form";
-import WorkTypeSubForm from "./work-type-sub-form";
+import { TitleSubForm, DescriptionSubForm, SalarySubForm, LocationSubForm, WorkTypeSubForm } from "./index";
 import apiUrl from "@/constant/config";
 import { useMultiForm } from "@/hooks/useMutliForm";
 import { InitialData } from "@/types";
+import { descriptionFormSchema, salaryFormSchema, titleFormSchema, workLocationSchema, workTypeSchema } from "@/schemas";
 
 const initialData: InitialData = {
     title: "",
@@ -24,7 +21,7 @@ const initialData: InitialData = {
     workType: "FULL_TIME",
 }
 
-export default function CreateJobForm(){
+export default function CreateJobForm() {
 
     const { role } = useAuth();
 
@@ -51,12 +48,34 @@ export default function CreateJobForm(){
         <WorkTypeSubForm {...data} updateFields={updateFields} key={5} />
     ])
 
+    const handleNext = () => {
+        const stepValidations = [
+            { schema: titleFormSchema, data: { title: data.title } },
+            { schema: descriptionFormSchema, data: { description: data.description } },
+            { schema: salaryFormSchema, data: { salary: data.salary } },
+            { schema: workLocationSchema, data: { workLocation: data.workLocation } },
+            { schema: workTypeSchema, data: { workType: data.workType } },
+        ];
+
+        const { schema, data: stepData } = stepValidations[currentStepIdx];
+
+        const validated = schema.safeParse(stepData);
+        if(!validated.success){
+            validated.error.issues.forEach((issue) => (
+               toast.error(issue.message)
+            ))
+            return;
+        }
+
+        next();
+    };
+
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        if (!isLastStep) return next()
+        if (!isLastStep) return handleNext();
         setIsSubmitting(true);
-
+        console.log(data);
         try {
             const res = await fetch(`${apiUrl}/job/create`, {
                 method: "POST",
@@ -111,5 +130,5 @@ export default function CreateJobForm(){
                 <ToastContainer />
             </main>
         </PrivateRoute>
-    ) : <LoadingSpinner/>
+    ) : <LoadingSpinner />
 }

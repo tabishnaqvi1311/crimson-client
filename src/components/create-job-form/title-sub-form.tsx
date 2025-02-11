@@ -1,6 +1,6 @@
 import FormWrapper from "./form-wrapper";
 
-export default function TitleSubForm({
+export function TitleSubForm({
     title,
     updateFields
 }: {

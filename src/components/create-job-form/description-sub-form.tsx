@@ -1,6 +1,6 @@
 import FormWrapper from "./form-wrapper";
 
-export default function DescriptionSubForm({
+export function DescriptionSubForm({
     description,
     updateFields
 }: {

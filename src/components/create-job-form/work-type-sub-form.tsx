@@ -1,7 +1,7 @@
 import { ChevronDown } from "lucide-react"
 import FormWrapper from "./form-wrapper"
 
-export default function WorkTypeSubForm({
+export function WorkTypeSubForm({
     workType,
     updateFields
 }: {

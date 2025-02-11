@@ -1,7 +1,7 @@
 import { DollarSign } from "lucide-react"
 import FormWrapper from "./form-wrapper"
 
-export default function SalarySubForm({
+export function SalarySubForm({
     salary,
     updateFields
 }: {
