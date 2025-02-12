@@ -10,6 +10,10 @@
   @apply text-2xl
 }
 
+.button-primary {
+  @apply btn bg-primary text-white hover:bg-[#eb244b]
+}
+
 ::selection {
   background-color: #e93559;
   color: white;

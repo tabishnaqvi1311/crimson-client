@@ -31,8 +31,7 @@ export default function Modal() {
                     </p>
                 </div>
                 <div className="flex">
-                    <button className="btn bg-primary text-white hover:bg-[#eb244b]
-                    ">
+                    <button className="button-primary">
                         <a href={`${apiUrl}/v/verify-youtuber?token=${localStorage.getItem("crimson-token")}`}>Verify Your Account</a>
                     </button>
                     <form method="dialog">
