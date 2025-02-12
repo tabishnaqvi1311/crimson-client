@@ -34,7 +34,7 @@ export default function YoutuberFeed() {
         <>
             {
                 query.data.users.map((talent: User) => (
-                    <div key={talent.id} className="pl-[7rem] pt-12">
+                    <div key={talent.id} className="mt-4">
                         {talent.picture
                             ?
                             <Image src={talent.picture} alt="user" height={40} width={40} className="rounded-full" />

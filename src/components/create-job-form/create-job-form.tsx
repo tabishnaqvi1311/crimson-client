@@ -75,7 +75,6 @@ export default function CreateJobForm() {
         e.preventDefault();
         if (!isLastStep) return handleNext();
         setIsSubmitting(true);
-        console.log(data);
         try {
             const res = await fetch(`${apiUrl}/job/create`, {
                 method: "POST",
@@ -86,8 +85,7 @@ export default function CreateJobForm() {
                 body: JSON.stringify(data)
             })
             if (!res.ok) throw new Error("An error occurred!")
-            const json = await res.json();
-            console.log(json);
+            router.push("/jobs")
             toast.success("Job posted successfully!")
         } catch (e) {
             toast.error("An error occurred!")
