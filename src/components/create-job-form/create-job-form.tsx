@@ -97,7 +97,7 @@ export default function CreateJobForm() {
 
     return role === "YOUTUBER" ? (
         <PrivateRoute>
-            <main className="min-h-[70vh] flex flex-col justify-center items-center">
+            <main className="md:min-h-[70vh] min-h-[50vh] flex flex-col justify-center items-center">
                 <ProgressBar currentStepIdx={currentStepIdx} totalSteps={5} />
                 <form onSubmit={handleSubmit}>
                     {step}

@@ -7,7 +7,7 @@ import { PoppinsBold, spaceGroteskMedium } from "@/fonts";
 export default function Page() {
     return (
         <div>
-            <div className="pl-[7rem] pt-10 flex items-center space-x-6">
+            <div className="md:pl-[7rem] pl-5 pt-10 flex items-center space-x-6">
                 <BackButton />
                 <div>
                     <h1 className={`${PoppinsBold.className} text-3xl text-text`}>Create a Job Listing</h1>

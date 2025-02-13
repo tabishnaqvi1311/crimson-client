@@ -15,7 +15,7 @@ export default function Page() {
         <PrivateRoute>
             {
                 role === "YOUTUBER" ?
-                    <div className="pl-[7rem] pt-10">
+                    <div className="md:pl-[7rem] pl-5 pt-10">
                         <div>
                             <h1 className={`${PoppinsBold.className} text-3xl text-text`}>Discover Talent</h1>
                             <h3 className={`${spaceGroteskMedium.className}`}>
@@ -26,7 +26,7 @@ export default function Page() {
                     </div>
                     :
                     role === "TALENT" ? (
-                        <div className="pl-[7rem] pt-10">
+                        <div className="md:pl-[7rem] pl-5 pt-10">
                             <div>
                                 <h1 className={`${PoppinsBold.className} text-3xl text-text`}>Discover Jobs</h1>
                                 <h3 className={`${spaceGroteskMedium.className}`}>
