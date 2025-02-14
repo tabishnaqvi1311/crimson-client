@@ -4,6 +4,10 @@ import dayjs from "dayjs";
 import { Clock, DollarSign, MapPin } from "lucide-react";
 import Image from "next/image";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { formatSubscribers, process } from "@/utils/utils";
+import CardWrapper from "./card-wrapper";
+
+dayjs.extend(relativeTime);
 
 export default function JobCard({
     job
@@ -11,34 +15,8 @@ export default function JobCard({
     job: Job
 }) {
 
-
-    dayjs.extend(relativeTime);
-
-    const formatSubscribers = (count: number) => {
-        if (count >= 1000000) {
-            return `${(count / 1000000).toFixed(1)}M`;
-        }
-        if (count >= 1000) {
-            return `${(count / 1000).toFixed(1)}K`;
-        }
-        return count.toString();
-    };
-
-    const process = (workType: string) => {
-        switch (workType) {
-            case "FULL_TIME":
-                return "Full Time";
-            case "PART_TIME":
-                return "Part Time";
-            case "PROJECT_BASED":
-                return "Project Based";
-            default:
-                return "Full Time";
-        }
-    }
-
     return (
-        <div className="card bg-text border-2 border-gray-700 hover:border-primary transition-all duration-300">
+        <CardWrapper>
             <div className="relative p-6 space-y-4">
                 {/* Header with YouTuber info */}
                 <div className="flex items-center space-x-3 card-title">
@@ -85,6 +63,6 @@ export default function JobCard({
                     </div>
                 </div>
             </div>
-        </div>
+        </CardWrapper>
     )
 }

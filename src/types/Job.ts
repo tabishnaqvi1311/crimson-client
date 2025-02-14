@@ -15,3 +15,13 @@ export type Job = {
         }
     }
 }
+
+export type JobWithStatus = {
+    id: string,
+    title: string,
+    salary: string,
+    workLocation: string,
+    workType: string,
+    status: "OPEN" | "CLOSED" | "DRAFT" | "EXPIRED",
+    createdAt: string,
+}
