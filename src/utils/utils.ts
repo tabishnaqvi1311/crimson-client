@@ -1,4 +1,5 @@
-export const formatSubscribers = (count: number) => {
+export const formatSubscribers = (count: number | undefined) => {
+    if(typeof count === "undefined") return "0";
     if (count >= 1000000) {
         return `${(count / 1000000).toFixed(1)}M`;
     }

@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Job } from "@/types";
 import JobCard from "../cards/job-card";
 import JobCardSkeleton from "../skeletons/job-card-skeleton";
+import JobDrawer from "../drawer/job-drawer";
 
 export default function TalentFeed() {
     const query = useQuery({
@@ -27,9 +28,11 @@ export default function TalentFeed() {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 w-[95%]">
-            {   //TODO: add a drawer to show the job details
+            { 
                 query.data.jobs.map((job: Job) => (
-                    <JobCard key={job.id} job={job} />
+                    <JobDrawer key={job.id} job={job}>
+                        <JobCard job={job} />
+                    </JobDrawer>
                 ))
             }
         </div>

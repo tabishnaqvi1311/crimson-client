@@ -51,7 +51,7 @@ export default function Sidebar() {
             </nav>
 
 
-            <nav className="fixed bottom-0 left-0 right-0 bg-text py-3 px-6 flex justify-between items-center md:hidden shadow-lg">
+            <nav className="fixed z-50 border-t  bottom-0 left-0 right-0 bg-text py-3 px-6 flex justify-between items-center md:hidden shadow-lg">
                 {navItems.map((item, i) => {
                     const active = pathname.includes(item.href);
                     return (

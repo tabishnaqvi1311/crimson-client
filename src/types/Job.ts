@@ -2,10 +2,12 @@ export type Job = {
     id: string,
     title: string,
     salary: string,
-    workLocation: string,
-    workType: string,
+    description: string,
+    workLocation: "REMOTE" | "ONSITE" | "HYBRID",
+    status: "OPEN" | "CLOSED" | "DRAFT" | "EXPIRED",
+    workType: "FULL_TIME" | "PART_TIME" | "PROJECT_BASED",
     createdAt: string,
-    poster: {
+    poster?: {
         id: string,
         name: string,
         picture: string,
@@ -14,14 +16,4 @@ export type Job = {
             subscribers: number
         }
     }
-}
-
-export type JobWithStatus = {
-    id: string,
-    title: string,
-    salary: string,
-    workLocation: string,
-    workType: string,
-    status: "OPEN" | "CLOSED" | "DRAFT" | "EXPIRED",
-    createdAt: string,
 }
