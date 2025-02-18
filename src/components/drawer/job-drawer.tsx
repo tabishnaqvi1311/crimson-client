@@ -6,6 +6,9 @@ import { workLocationIcons } from "@/constant/icons"
 import { useAuth } from "@/hooks/useAuth"
 import JobStatus from "../badges/job-status"
 import relativeTime from "dayjs/plugin/relativeTime"
+import apiUrl from "@/constant/config"
+import { useState } from "react"
+import { useQueryClient } from "@tanstack/react-query"
 
 // salary: string;
 // workLocation: "REMOTE" | "ONSITE" | "HYBRID";
@@ -23,11 +26,43 @@ export default function JobDrawer({
     children: React.ReactNode
 }) {
 
+
+    const [isDeleting, setIsDeleting] = useState<boolean>(false);
+    const [checked, setChecked] = useState<boolean>(false);
+
+
     const { role } = useAuth();
+    const queryClient = useQueryClient();
+
+    const handleDelete = async () => {
+        setIsDeleting(true);
+        try {
+            const response = await fetch(`${apiUrl}/job/delete/${job.id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("crimson-token")}`
+                },
+            })
+            if (!response.ok) throw new Error("failed to delete job");
+            setChecked(false);
+            await queryClient.invalidateQueries({ queryKey: ["my-jobs"] });
+        } catch (e) {
+            console.log(e);
+        } finally {
+            setIsDeleting(false);
+        }
+    }
 
     return (
         <div className="relative">
-            <input id={job.id} type="checkbox" className="peer hidden" />
+            <input
+                id={job.id}
+                type="checkbox"
+                className="peer hidden"
+                checked={checked}
+                onChange={() => setChecked(!checked)}
+            />
             <div className="drawer-content">
                 <label htmlFor={job.id} className="cursor-pointer">
                     {children}
@@ -42,7 +77,7 @@ export default function JobDrawer({
             />
 
             {/* Drawer */}
-            <div className="fixed top-0 bottom-0 right-0 w-96 bg-white shadow-2xl translate-x-full peer-checked:translate-x-0 transition-transform duration-300 ease-in-out z-50">
+            <div className="fixed top-0 bottom-0 right-0 w-96 bg-white shadow-2xl translate-x-full peer-checked:translate-x-0 transition-transform duration-300 ease-in-out z-50 overflow-y-scroll">
                 <div className="relative h-full p-6">
                     <DrawerCloseButton id={job.id} />
                     {/* Content */}
@@ -69,13 +104,18 @@ export default function JobDrawer({
                                 <span>Posted {dayjs(job.createdAt).fromNow()}</span>
                             </div>
                         </div>
-                        <p className={`text-gray-600 leading-relaxed mb-8 ${spaceGroteskMedium.className}`}>{job.description}</p>
+                        <p className={`text-gray-600 leading-relaxed mb-8 ${spaceGroteskMedium.className}`}>{job.description} </p>
                         {
-                            role === "TALENT" &&
-                            <button className="button-primary w-full border-none">
-                                Apply Now
-                                {/* add functionality to apply */}
-                            </button>
+                            role === "TALENT" ?
+                                <button className="button-primary w-full border-none">
+                                    Apply Now
+                                    {/* add functionality to apply */}
+                                </button>
+                                :
+                                <button className="btn btn-link text-primary border-none disabled:text-gray-400" onClick={handleDelete} disabled={isDeleting}>
+                                    Delete
+                                    {/* add functionality to edit */}
+                                </button>
                         }
                     </div>
                 </div>
