@@ -8,7 +8,8 @@ import JobStatus from "../badges/job-status"
 import relativeTime from "dayjs/plugin/relativeTime"
 import apiUrl from "@/constant/config"
 import { useState } from "react"
-import { useQueryClient } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { Trash2 } from "lucide-react"
 
 // salary: string;
 // workLocation: "REMOTE" | "ONSITE" | "HYBRID";
@@ -34,24 +35,32 @@ export default function JobDrawer({
     const { role } = useAuth();
     const queryClient = useQueryClient();
 
-    const handleDelete = async () => {
-        setIsDeleting(true);
-        try {
-            const response = await fetch(`${apiUrl}/job/delete/${job.id}`, {
+    const deleteMutation = useMutation({
+        mutationFn: async (id: string) => {
+            const response = await fetch(`${apiUrl}/job/delete/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${localStorage.getItem("crimson-token")}`
                 },
-            })
-            if (!response.ok) throw new Error("failed to delete job");
+            });
+            if (!response.ok) throw new Error("Failed to delete job");
+            return response.json();
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['my-jobs'] });
             setChecked(false);
-            await queryClient.invalidateQueries({ queryKey: ["my-jobs"] });
-        } catch (e) {
-            console.log(e);
-        } finally {
-            setIsDeleting(false);
+        },
+        onError: (error) => {
+            console.log(error);
         }
+    })
+
+    const handleDelete = async () => {
+        setIsDeleting(true);
+        deleteMutation.mutate(job.id, {
+            onSettled: () => setIsDeleting(false)
+        })
     }
 
     return (
@@ -80,6 +89,18 @@ export default function JobDrawer({
             <div className="fixed top-0 bottom-0 right-0 w-96 bg-white shadow-2xl translate-x-full peer-checked:translate-x-0 transition-transform duration-300 ease-in-out z-50 overflow-y-scroll">
                 <div className="relative h-full p-6">
                     <DrawerCloseButton id={job.id} />
+                    <div className="absolute right-12 top-4">  {/* Positions it next to close button */}
+                        {role !== "TALENT" && (
+                            <button
+                                onClick={handleDelete}
+                                disabled={deleteMutation.isPending || isDeleting}
+                                className="p-2 text-gray-400 hover:text-red-500 transition-colors rounded-full hover:bg-red-50"
+                                title="Delete Job"
+                            >
+                                <Trash2 size={18} />
+                            </button>
+                        )}
+                    </div>
                     {/* Content */}
                     <div className="mt-8">
                         <JobStatus status={job.status} />
@@ -112,10 +133,7 @@ export default function JobDrawer({
                                     {/* add functionality to apply */}
                                 </button>
                                 :
-                                <button className="btn btn-link text-primary border-none disabled:text-gray-400" onClick={handleDelete} disabled={isDeleting}>
-                                    Delete
-                                    {/* add functionality to edit */}
-                                </button>
+                                null
                         }
                     </div>
                 </div>
