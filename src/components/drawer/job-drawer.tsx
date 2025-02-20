@@ -7,9 +7,11 @@ import { useAuth } from "@/hooks/useAuth"
 import JobStatus from "../badges/job-status"
 import relativeTime from "dayjs/plugin/relativeTime"
 import apiUrl from "@/constant/config"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { Trash2 } from "lucide-react"
+import EditStatusField from "./edit-status-field"
+import JobUpdateButton from "../buttons/job-update-button"
+import JobDeleteButton from "../buttons/job-delete-button"
 
 // salary: string;
 // workLocation: "REMOTE" | "ONSITE" | "HYBRID";
@@ -29,7 +31,15 @@ export default function JobDrawer({
 
 
     const [isDeleting, setIsDeleting] = useState<boolean>(false);
+    const [isEditing, setIsEditing] = useState<boolean>(false);
     const [checked, setChecked] = useState<boolean>(false);
+
+    const [editedJob, setEditedJob] = useState<Job>(job);
+
+    useEffect(() => {
+        setEditedJob(job);
+        setIsEditing(false);
+    }, [job])
 
 
     const { role } = useAuth();
@@ -56,12 +66,43 @@ export default function JobDrawer({
         }
     })
 
+    const updateMutation = useMutation({
+        mutationFn: async (job: Job) => {
+            const response = await fetch(`${apiUrl}/job/update/${job.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("crimson-token")}`
+                },
+                body: JSON.stringify(job)
+            });
+            if (!response.ok) throw new Error("Failed to update job");
+            return response.json();
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['my-jobs'] });
+            setIsEditing(false);
+        },
+        onError: (error) => {
+            console.log(error);
+        }
+    })
+
+    const handleUpdate = async () => {
+        updateMutation.mutate(editedJob);
+    }
+
     const handleDelete = async () => {
         setIsDeleting(true);
         deleteMutation.mutate(job.id, {
             onSettled: () => setIsDeleting(false)
         })
     }
+
+    const handleCancel = () => {
+        setEditedJob(job);
+        setIsEditing(false);
+    };
 
     return (
         <div className="relative">
@@ -89,21 +130,39 @@ export default function JobDrawer({
             <div className="fixed top-0 bottom-0 right-0 w-96 bg-white shadow-2xl translate-x-full peer-checked:translate-x-0 transition-transform duration-300 ease-in-out z-50 overflow-y-scroll">
                 <div className="relative h-full p-6">
                     <DrawerCloseButton id={job.id} />
-                    <div className="absolute right-12 top-4">  {/* Positions it next to close button */}
-                        {role !== "TALENT" && (
-                            <button
-                                onClick={handleDelete}
-                                disabled={deleteMutation.isPending || isDeleting}
-                                className="p-2 text-gray-400 hover:text-red-500 transition-colors rounded-full hover:bg-red-50"
-                                title="Delete Job"
-                            >
-                                <Trash2 size={18} />
-                            </button>
-                        )}
-                    </div>
+                    {
+                        role === "YOUTUBER" && (
+                            <>
+                                <div className="absolute right-12 top-4">
+                                    <JobUpdateButton
+                                        setIsEditing={setIsEditing}
+                                        isPendingDeletion={deleteMutation.isPending}
+                                        isPendingUpdation={updateMutation.isPending}
+                                        isDeleting={isDeleting}
+                                        isEditing={isEditing}
+                                    />
+                                    <JobDeleteButton
+                                        handleDelete={handleDelete}
+                                        isPendingDeletion={deleteMutation.isPending}
+                                        isPendingUpdation={updateMutation.isPending}
+                                        isDeleting={isDeleting}
+                                        isEditing={isEditing}
+                                    />
+                                </div>
+                            </>
+                        )
+                    }
                     {/* Content */}
                     <div className="mt-8">
-                        <JobStatus status={job.status} />
+                        {isEditing ? (
+                            <EditStatusField
+                                editedJob={editedJob}
+                                setEditedJob={setEditedJob}
+                            />
+                        ) : (
+                            <JobStatus status={editedJob.status} />
+                        )}
+
                         <h1 className={`${bricolageGrotesqueBold.className} text-2xl text-background mb-4`}>{job.title}</h1>
                         <div className={`space-y-3 mb-6 ${spaceGroteskRegular.className}`}>
                             <div className="flex items-center text-gray-600">
@@ -125,7 +184,20 @@ export default function JobDrawer({
                                 <span>Posted {dayjs(job.createdAt).fromNow()}</span>
                             </div>
                         </div>
-                        <p className={`text-gray-600 leading-relaxed mb-8 ${spaceGroteskMedium.className}`}>{job.description} </p>
+                        {
+                            isEditing ? (
+                                <textarea
+                                    value={editedJob.description}
+                                    onChange={(e) => setEditedJob({ ...editedJob, description: e.target.value })}
+                                    className={`textarea input-bordered rounded-md w-full leading-relaxed text-gray-600 ${spaceGroteskMedium.className}`}
+                                    data-theme="light"
+                                    rows={10}
+                                />
+                            ) :
+                                <p className={`text-gray-600 leading-relaxed mb-8 whitespace-pre-line ${spaceGroteskMedium.className}`}>
+                                    {editedJob.description}
+                                </p>
+                        }
                         {
                             role === "TALENT" ?
                                 <button className="button-primary w-full border-none">
@@ -133,7 +205,25 @@ export default function JobDrawer({
                                     {/* add functionality to apply */}
                                 </button>
                                 :
-                                null
+                                isEditing &&
+                                (
+                                    <div className="flex gap-2 mt-4">
+                                        <button
+                                            className="button-primary border-none"
+                                            onClick={handleUpdate}
+                                            disabled={updateMutation.isPending}>
+                                            {updateMutation.isPending ?
+                                                <span className="loading loading-spinner text-text" /> :
+                                                'Save'}
+                                        </button>
+                                        <button className="btn btn-link text-background"
+                                            onClick={handleCancel}
+                                            disabled={updateMutation.isPending}
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+                                )
                         }
                     </div>
                 </div>
