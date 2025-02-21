@@ -2,6 +2,9 @@ import apiUrl from "@/constant/config";
 import { useAuth } from "@/hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import JobCardSkeleton from "../skeletons/job-card-skeleton";
+import JobCardWithStatus from "../cards/job-card-with-status";
+import JobDrawer from "../drawer/job-drawer";
+import { Job } from "@/types";
 
 export default function MyJobs() {
 
@@ -30,14 +33,12 @@ export default function MyJobs() {
 
 
     return (
-        query.data.jobs.map((job: any) => (
-            <div key={job.id} className="border border-gray-200 rounded-md p-4">
-                <h1 className="text-xl font-bold">{job.title}</h1>
-                <p className="text-sm text-gray-500 mt-2">Salary: {job.salary}</p>
-                <p className="text-sm text-gray-500 mt-2">Location: {job.workLocation}</p>
-                <p className="text-sm text-gray-500 mt-2">Type: {job.workType}</p>
-                <p className="text-sm text-gray-500 mt-2">Status: {job.status}</p>
-            </div>
-        ))
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 w-[95%]">{
+            query.data.jobs.map((job: Job) => (
+                <JobDrawer key={job.id} job={job}>
+                    <JobCardWithStatus job={job} />
+                </JobDrawer>
+            ))}
+        </div>
     )
 }
