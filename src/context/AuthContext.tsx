@@ -37,7 +37,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         const token = localStorage.getItem("crimson-token");
 
         if (!token) {
-            if(pathname === "/signin") return; // if user is not logged in and is on signin page, do nothing
+            if(pathname === "/signin") {
+                setLoading(false);
+                return;
+            } // if user is not logged in and is on signin page, do nothing
             console.log("forbidden");
             logout(); return;
         }
