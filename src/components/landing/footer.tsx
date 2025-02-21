@@ -8,7 +8,7 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row justify-between items-center space-y-4">
                     <div className={`${spaceGroteskMedium.className} lg:text-start text-center`}>
                         <Link href="/" className="text-4xl text-[#e93559]">
-                            Crimson
+                            crimson
                         </Link>
                         <p>&copy; {new Date().getFullYear()} Crimson. All rights reserved.</p>
                     </div>
@@ -25,6 +25,7 @@ export default function Footer() {
                             <Link href="/privacy" className={spaceGroteskRegular.className} style={{color: "white"}}>Privacy Policy</Link>
                             <Link href="/terms" className={spaceGroteskRegular.className} style={{color: "white"}}>Terms of Services</Link>
                             <Link href="/refund" className={spaceGroteskRegular.className} style={{color: "white"}}>Refund Policy</Link>
+                            <Link href="/google-api-disclosure" className={spaceGroteskRegular.className} style={{color: "white"}}>Google API Disclosure</Link>
                         </ul>
                     </div>
                 </div>
