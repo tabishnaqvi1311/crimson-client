@@ -1,5 +1,5 @@
 import { AuthContextType, TokenPayloadType } from "@/types";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { createContext, useCallback, useEffect, useState, } from "react";
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [loading, setLoading] = useState<boolean>(true);
 
     const router = useRouter();
+    const pathname = usePathname();
 
     const verify = (() => {
         setHasVerified(true);
@@ -30,6 +31,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }, [router])
 
     const checkAuth = useCallback(() => {
+        const generalPages = ["/terms", "/privacy", "/refund"];
+        if (generalPages.includes(pathname)) return;
+
         const token = localStorage.getItem("crimson-token");
 
         if (!token) {
@@ -66,7 +70,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setPicture(payload.picture);
         setIsAuthenticated(true);
         setLoading(false);
-    }, [logout])
+    }, [logout, pathname])
 
     const login = useCallback((token: string) => {
         localStorage.setItem("crimson-token", token);
