@@ -13,6 +13,9 @@ export default function Page() {
   return (
     <PublicRoute>
       <div className="min-h-screen">
+        <div className="main">
+          <div className="gradient"/>
+        </div>
         <div className="">
           <Hero />
           <Features />
