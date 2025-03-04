@@ -4,7 +4,7 @@ import FAQ from "@/components/landing/faq";
 import Features from "@/components/landing/features";
 import Footer from "@/components/landing/footer";
 import Hero from "@/components/landing/hero";
-import Pricing from "@/components/landing/pricing";
+// import Pricing from "@/components/landing/pricing";
 
 //TODO: detect if user is logged in and redirect to dashboard
 
@@ -19,7 +19,7 @@ export default function Page() {
         <div className="">
           <Hero />
           <Features />
-          <Pricing />
+          {/* <Pricing /> */}
           <FAQ/>
           <CTA />
           <Footer />
