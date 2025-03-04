@@ -11,11 +11,7 @@ const faq = [
     },
     {
         q: "How much does it cost?",
-        a: "If you're a YouTuber posting a job, there's a small fee per listing ($12) (gotta keep the lights on!). If you're talent looking for work, applying is 100% free."
-    },
-    {
-        q: "What other costs are involved?",
-        a: "As of now, there are no other costs involved. We're keeping it simple and straightforward. Expect updates in the future, though!"
+        a: "Nada. Zilch. Zero. Posting jobs and applying for them is completely free. We're here to help creators and talent connect without breaking the bank."
     },
     {
         q: "Do I have to link my YouTube channel to post jobs?",
@@ -46,7 +42,7 @@ const faq = [
 
 export default function FAQ() {
     return (
-        <section className="container mx-auto px-4 py-4" id="faq">
+        <section className="container mx-auto px-4 py-10" id="faq">
             <div className="flex flex-col lg:flex-row gap-8">
                 <div className="lg:w-1/2">
                     <h1 className={`${bricolageGrotesqueBold.className} text-3xl sm:text-4xl font-bold mb-6 text-text`}>Frequently Asked Questions</h1>

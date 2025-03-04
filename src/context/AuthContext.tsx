@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }, [router])
 
     const checkAuth = useCallback(() => {
-        const generalPages = ["/terms", "/privacy", "/refund", "/google-api-disclosure"];
+        const generalPages = ["/terms", "/privacy", "/refund", "/google-api-disclosure", '/auth-hold', '/auth-sucess'];
         if (generalPages.includes(pathname)) return;
 
         const token = localStorage.getItem("crimson-token");
