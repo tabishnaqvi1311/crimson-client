@@ -49,7 +49,7 @@ export default function Profile() {
     const query = useQuery({
         queryKey: ["user-profile"],
         queryFn: async () => {
-            const response = await fetch(`${apiUrl}/users/profile/${role}/${userId}`, {
+            const response = await fetch(`${apiUrl}/users/me`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
