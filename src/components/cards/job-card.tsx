@@ -7,6 +7,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { formatSubscribers } from "@/utils/utils";
 import CardWrapper from "./card-wrapper";
 import { workLocationIcons } from "@/constant/icons";
+import Link from "next/link";
 
 dayjs.extend(relativeTime);
 
@@ -30,7 +31,7 @@ export default function JobCard({
                     }
                     <div>
                         <div className="flex items-center space-x-2">
-                            <h3 className="text-lg font-bold text-background">{job.poster?.youtuberProfile.channelName}</h3>
+                            <Link href={`/profile/${job.poster?.id}/YOUTUBER`} className="text-lg font-bold text-background hover:text-secondary">{job.poster?.youtuberProfile.channelName}</Link>
                             <span>•</span>
                             <p className={`text-sm text-gray-400 ${spaceGroteskMedium.className}`}>
                                 {formatSubscribers(job.poster?.youtuberProfile.subscribers)} subs

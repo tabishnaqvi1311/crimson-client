@@ -5,6 +5,7 @@ import Image from "next/image";
 import { CircleUserRound } from "lucide-react";
 import { User } from "@/types";
 import Modal from "../modal/modal";
+import Link from "next/link";
 
 
 export default function YoutuberFeed() {
@@ -34,7 +35,7 @@ export default function YoutuberFeed() {
         <>
             {
                 query.data.users.map((talent: User) => (
-                    <div key={talent.id} className="mt-4">
+                    <Link key={talent.id} className="mt-4" href={`/profile/${talent.id}/TALENT`}>
                         {talent.picture
                             ?
                             <Image src={talent.picture} alt="user" height={40} width={40} className="rounded-full" />
@@ -45,7 +46,7 @@ export default function YoutuberFeed() {
                             <p className="text-lg text-primary">{talent.name}</p>
                             <p className="text-sm text-gray-400">{talent.email}</p>
                         </div>
-                    </div>
+                    </Link>
                 ))
             }
             <Modal />

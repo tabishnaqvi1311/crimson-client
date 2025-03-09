@@ -2,10 +2,9 @@
 
 import { PoppinsRegular, spaceGroteskBold } from "@/fonts";
 import { useAuth } from "@/hooks/useAuth";
-import { Briefcase, Home, LayoutGrid, LucideIcon } from "lucide-react";
+import { Briefcase, LayoutGrid, LucideIcon, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import ProfileLink from "./profile-link";
 
 interface NavItem {
     icon: LucideIcon;
@@ -14,14 +13,14 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-    { icon: Home, text: "Home", href: "/home" },
     { icon: LayoutGrid, text: "Discover", href: "/discover" },
     { icon: Briefcase, text: "My Jobs", href: "/jobs" },
+    {icon : User, text: "Profile", href: "/profile"}
 ]
 
 export default function Sidebar() {
 
-    const { isAuthenticated, picture } = useAuth();
+    const { isAuthenticated } = useAuth();
     const pathname = usePathname();
 
     if (!isAuthenticated) return null;
@@ -45,9 +44,7 @@ export default function Sidebar() {
                         )
                     })}
                 </div>
-                <div className="flex justify-center items-center">
-                    <ProfileLink picture={picture} pathname={pathname} />
-                </div>
+                <div />
             </nav>
 
 
@@ -61,10 +58,6 @@ export default function Sidebar() {
                         </Link>
                     );
                 })}
-                <div>
-                    <ProfileLink picture={picture} pathname={pathname} h={30} w={30} />
-                    <span className={`text-sm transition-colors ${PoppinsRegular.className}`}>Profile</span>
-                </div>
             </nav>
         </>
     )
