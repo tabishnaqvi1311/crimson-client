@@ -3,12 +3,13 @@
 import { useAuth } from "@/hooks/useAuth"
 import { Space_Grotesk } from "next/font/google"
 import Link from "next/link"
+import UserButton from "./buttons/user-button"
 
 const spaceGroteskRegular = Space_Grotesk({ subsets: ['latin'], weight: "500" })
 
 export default function Navbar() {
 
-    const { isAuthenticated, loading, logout } = useAuth();
+    const { isAuthenticated, loading } = useAuth();
 
     return (
         <>
@@ -18,11 +19,7 @@ export default function Navbar() {
                 </div>
                 <div className="flex-0">
                     {
-                        isAuthenticated && !loading && (
-                            <ul className="menu menu-horizontal px-1">
-                                <button onClick={logout} className="btn btn-sm text-text btn-ghost px-4 hover:bg-text hover:text-background no-underline> text-base">Logout</button>
-                            </ul>
-                        ) 
+                        isAuthenticated && !loading && <UserButton/>
                     }
                     {
                         !isAuthenticated && !loading && (

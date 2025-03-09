@@ -13,6 +13,9 @@
 .button-primary {
   @apply btn bg-primary text-white hover:bg-[#eb244b]
 }
+.button-secondary {
+  @apply btn bg-[#6369d4] text-white hover:bg-[#595fd1]
+}
 
 ::selection {
   background-color: #e93559;
@@ -71,7 +74,27 @@
   opacity: 0.15;
 }
 
-
+.diagonal-div {
+  width: 100%;
+  height: 130px;
+  background: linear-gradient(45deg,
+    /* First shade up to 33% */
+    #7d0d26 0%,
+    #b7183c 33%,
+    /* Thin border (white) */
+    /* #ffffff 33%, */
+    /* #ffffff 34%, */
+    /* Second shade from 34% to 67% */
+    #e72b5f 33%,
+    #f06c86 67%,
+    /* Another thin border */
+    /* #ffffff 67%, */
+    /* #ffffff 68%, */
+    /* Third shade from 68% to 100% */
+    #bc2b59 67%,
+    #aa2a57 100%
+  );
+}
 
 .body {
   --radius: 8px;

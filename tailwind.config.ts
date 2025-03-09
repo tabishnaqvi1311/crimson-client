@@ -13,7 +13,7 @@ export default {
         'text': '#fff',
         'background': '#141d29',
         'primary': '#e93559',
-        'secondary': '#faebd7',
+        'secondary': '#6369d4',
         'accent': '#8b53af',
       },
     },
