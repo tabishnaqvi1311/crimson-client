@@ -19,8 +19,13 @@ export default function TalentProfile({
             />
             <UserDataCard
                 title="Preferred Work Location"
-                data={user.talentProfile?.workLocation.charAt(0) as string + user.talentProfile?.workLocation.slice(1).toLowerCase()}
-                icon={user.talentProfile?.workLocation ? workLocationIcons[user.talentProfile?.workLocation] : null}
+                data={user.talentProfile?.workLocation 
+                    ? 
+                    user.talentProfile?.workLocation.charAt(0) + user.talentProfile?.workLocation.slice(1).toLowerCase()
+                    :
+                    null
+                }
+                icon={user.talentProfile?.workLocation ? workLocationIcons[user.talentProfile?.workLocation] : "🌎"}
                 me={user.id === userId}
             />
             <UserDataCard
