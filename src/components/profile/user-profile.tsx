@@ -19,7 +19,7 @@ export default function UserProfile() {
     const role = params.role as string
 
     const query = useQuery({
-        queryKey: ["other-user-profile"],
+        queryKey: [`other-user-profile${id}`],
         queryFn: async () => {
             const response = await fetch(`${apiUrl}/users/profile/${role}/${id}`, {
                 method: "GET",
