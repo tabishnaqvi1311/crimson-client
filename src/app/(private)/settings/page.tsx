@@ -5,7 +5,7 @@ import Settings from "@/components/settings/settings";
 export default function Page() {
     return (
         <PrivateRoute>
-            <PageWrapper title="Settings">
+            <PageWrapper title="Settings" backButton>
                 <Settings/>
             </PageWrapper>
         </PrivateRoute>

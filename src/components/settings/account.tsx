@@ -4,6 +4,7 @@ import LoadingSpinner from "../loading";
 import ProfileLink from "../sidebar/profile-link";
 import { bricolageGrotesqueBold, spaceGroteskMedium } from "@/fonts";
 import { useAuth } from "@/hooks/useAuth";
+import { LogOut } from "lucide-react";
 
 function handleRedirect() {
     window.location.href = `${apiUrl}/v/verify-youtuber?token=${localStorage.getItem("crimson-token")}`;
@@ -11,7 +12,7 @@ function handleRedirect() {
 
 export default function Account() {
 
-    const { role } = useAuth();
+    const { role, logout } = useAuth();
 
     const query = useQuery({
         queryKey: ["user-profile"],
@@ -71,6 +72,15 @@ export default function Account() {
                         <span className="text-green-300">Verified</span>
                 }</p>
             </div>}
+
+            <hr className="w-full"/>
+
+            <button 
+                className="flex gap-2 items-center btn btn-ghost hover:bg-primary"
+                onClick={logout} 
+            >
+                <LogOut size={15}/> Logout
+            </button>
         </div>
     )
 }
