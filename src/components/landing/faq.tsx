@@ -58,7 +58,7 @@ export default function FAQ() {
                                 <div className="join join-vertical w-full divide-y" key={index}>
                                     <div className="collapse collapse-plus join-item border-b border-gray-700">
                                         <input type="radio" name={`faq`} className="peer" />
-                                        <div className={`${bricolageGrotesqueBold.className}  collapse-title text-xl font-medium peer-checked:text-primary`}>{item.q}</div>
+                                        <div className={`${bricolageGrotesqueBold.className}  collapse-title text-xl font-medium peer-checked:text-accent`}>{item.q}</div>
                                         <div className="collapse-content">
                                             <p className={`${spaceGroteskRegular.className} text-lg`}>{item.a}</p>
                                         </div>

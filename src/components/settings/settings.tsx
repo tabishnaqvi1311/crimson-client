@@ -12,7 +12,7 @@ export default function Settings() {
     const [activeTab, setActiveTab] = useState<Tab>("account");
 
     return (
-        <div className="flex mt-6 gap-6">
+        <div className="flex md:flex-row flex-col mt-6 gap-6">
             <div className="flex md:flex-col flex-row md:w-[30%] gap-4">
                 {["Account", "Legal", "Contact"].map((tab) => (
                     <button

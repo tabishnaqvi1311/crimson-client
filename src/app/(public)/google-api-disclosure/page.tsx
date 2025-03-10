@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function GoogleApiDisclosure() {
     return (
-        <main className='p-7'>
+        <main className='p-7 py-7 px-[7rem]'>
             <div className="h-[80vh]">
                 <div>
                     <h1 className={`${bricolageGrotesqueBold.className} text-4xl text-white`}>

@@ -21,17 +21,17 @@ const features = [
 
 const opportunities = [
     {
-        icon: <Camera className="w-12 h-12 text-[#8b53af]" />,
+        icon: <Camera className="w-12 h-12 text-accent" />,
         title: "Video Editing",
         description: "Showcase your editing skills and bring YouTubers' visions to life.",
     },
     {
-        icon: <Edit className="w-12 h-12 text-[#8b53af]" />,
+        icon: <Edit className="w-12 h-12 text-accent" />,
         title: "Graphic Design",
         description: "Create eye-catching thumbnails and channel art that stand out.",
     },
     {
-        icon: <Star className="w-12 h-12 text-[#8b53af]" />,
+        icon: <Star className="w-12 h-12 text-accent" />,
         title: "Many More",
         description: "From SEO to voice-over work, find opportunities that match your skills.",
     },

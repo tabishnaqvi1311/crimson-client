@@ -24,7 +24,7 @@ export default function Footer() {
                             <li className={`${PoppinsMedium.className} tracking-widest`}>LEGAL</li>
                             <Link href="/privacy" className={spaceGroteskRegular.className} style={{color: "white"}}>Privacy Policy</Link>
                             <Link href="/terms" className={spaceGroteskRegular.className} style={{color: "white"}}>Terms of Services</Link>
-                            <Link href="/refund" className={spaceGroteskRegular.className} style={{color: "white"}}>Refund Policy</Link>
+                            {/* <Link href="/refund" className={spaceGroteskRegular.className} style={{color: "white"}}>Refund Policy</Link> */}
                             <Link href="/google-api-disclosure" className={spaceGroteskRegular.className} style={{color: "white"}}>Google API Disclosure</Link>
                         </ul>
                     </div>
