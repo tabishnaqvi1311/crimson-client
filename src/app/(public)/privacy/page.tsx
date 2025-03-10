@@ -3,10 +3,10 @@ import { bricolageGrotesqueBold, spaceGroteskMedium } from "@/fonts";
 
 export default function Page() {
     return (
-        <main className="p-7">
+        <main className="p-7 py-7 px-[7rem]">
             <div className="mb-8">
                 <h1 className={`${bricolageGrotesqueBold.className} text-4xl text-white mb-4`}>Privacy Policy</h1>
-                <p className={`${spaceGroteskMedium.className}`}><strong>Last Updated:</strong> 12th February 2025</p>
+                <p className={`${spaceGroteskMedium.className}`}><strong>Last Updated:</strong> 10th March 2025</p>
             </div>
             <div className={`${spaceGroteskMedium.className} space-y-4 text-white text-lg`}>
                 <p className="mb-6">Welcome to Crimson! Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your information when you use our platform.</p>
@@ -17,7 +17,6 @@ export default function Page() {
                     <li><strong>User Emails:</strong> Collected for authentication, communication, and security notifications.</li>
                     <li><strong>YouTube Channel Data:</strong> Includes channel name, about section, and statistics, used for verification and fraud prevention.</li>
                     <li><strong>Job Postings:</strong> Stored and managed as part of our platform services.</li>
-                    <li><strong>Payments:</strong> Transaction data is collected to process job post fees and maintain financial records.</li>
                     <li><strong>Traffic Data:</strong> Used for analytics, security monitoring, and platform improvements.</li>
                 </ul>
 
@@ -26,7 +25,6 @@ export default function Page() {
                 <ul className="list-disc list-inside mb-6">
                     <li>To verify YouTubers before allowing job postings.</li>
                     <li>To provide, operate, and improve Crimson.</li>
-                    <li>To process payments securely and prevent fraud.</li>
                     <li>To analyze platform usage, detect abuse, and enhance user experience.</li>
                     <li>To send authentication emails for magic link sign-in.</li>
                     <li>To comply with legal obligations and enforce our terms.</li>
@@ -35,7 +33,6 @@ export default function Page() {
                 <h2 className={`${bricolageGrotesqueBold.className} text-2xl text-white mb-4`}>3. Data Sharing & Third-Party Services</h2>
                 <p className="mb-4">We may share your data with third-party services for:</p>
                 <ul className="list-disc list-inside mb-6">
-                    <li>Payment processing (e.g., Paddle).</li>
                     <li>Analytics to track platform performance and prevent abuse.</li>
                     <li>Email services to deliver authentication and security notifications.</li>
                 </ul>
