@@ -1,12 +1,16 @@
+import BackButton from "@/components/buttons/back-button";
 import Footer from "@/components/landing/footer";
 import { bricolageGrotesqueBold, spaceGroteskMedium } from "@/fonts";
 
 export default function Page() {
     return (
-        <main className="py-7 px-[7rem]">
-            <div>
-                <h1 className={`${bricolageGrotesqueBold.className} text-4xl text-white`}>Terms of Service</h1>
-                <p className={spaceGroteskMedium.className}>Last Updated 10th March 2025</p>
+        <main className="py-7 md:px-[7rem] px-4">
+            <div className="flex items-center gap-2">
+                <BackButton />
+                <div>
+                    <h1 className={`${bricolageGrotesqueBold.className} text-4xl text-white`}>Terms of Service</h1>
+                    <p className={spaceGroteskMedium.className}>Last Updated 10th March 2025</p>
+                </div>
             </div>
             <div className={`mt-6 space-y-4 text-white text-lg ${spaceGroteskMedium.className}`}>
                 <p>Welcome to Crimson! These Terms of Service ("Terms") govern your use of Crimson ("we," "our," or "us"), an independent job board that connects YouTubers seeking talent with potential candidates. By accessing or using Crimson, you agree to these Terms.</p>
@@ -73,7 +77,7 @@ export default function Page() {
                 <p>For any inquiries, please contact us at <strong>tabish.naqvi2003@gmail.com</strong>.</p>
                 <p>Thank you for using Crimson!</p>
             </div>
-            <Footer/>
+            <Footer />
         </main>
     )
 }
