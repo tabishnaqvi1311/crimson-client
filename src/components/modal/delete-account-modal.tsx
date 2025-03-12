@@ -3,7 +3,7 @@ import { bricolageGrotesqueBold, spaceGroteskRegular } from "@/fonts";
 import { useAuth } from "@/hooks/useAuth";
 import { Trash2 } from "lucide-react";
 import { useRef, useState } from "react";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 export default function DeleteAccountModal() {
     const modalRef = useRef<HTMLDialogElement>(null);
@@ -27,11 +27,11 @@ export default function DeleteAccountModal() {
                     "Authorization": `Bearer ${localStorage.getItem("crimson-token")}`
                 }
             })
-            if(!response.ok) throw new Error("something went wrong");
+            if (!response.ok) throw new Error("something went wrong");
             logout();
-        } catch(e) {
+        } catch (e) {
             console.log(e);
-            toast.error("could not delete")
+            toast.error("Something went wrong", { position: "top-right" })
         } finally {
             setIsDeleting(false);
         }

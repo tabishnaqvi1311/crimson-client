@@ -6,7 +6,6 @@ import { bricolageGrotesqueBold, spaceGroteskMedium } from "@/fonts";
 import { useAuth } from "@/hooks/useAuth";
 import { LogOut } from "lucide-react";
 import DeleteAccountModal from "../modal/delete-account-modal";
-import { ToastContainer } from "react-toastify";
 
 function handleRedirect() {
     window.location.href = `${apiUrl}/v/verify-youtuber?token=${localStorage.getItem("crimson-token")}`;
@@ -86,7 +85,6 @@ export default function Account() {
                 <LogOut size={15}/> Logout
             </button>
             <DeleteAccountModal/>
-            <ToastContainer/>
         </div>
     )
 }

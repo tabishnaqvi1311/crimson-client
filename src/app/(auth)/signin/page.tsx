@@ -7,7 +7,7 @@ import apiUrl from "@/constant/config";
 import { spaceGroteskMedium, spaceGroteskRegular } from "@/fonts";
 import { redirect } from "next/navigation";
 import { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import toast from "react-hot-toast";
 
 
 
@@ -19,16 +19,16 @@ export default function Page() {
 
     const handleSubmit = async () => {
         if (!email) {
-            toast.error("Email is required", { theme: "dark" });
+            toast.error("Email is required", { position: "top-right"} );
 
             return;
         }
         if (!role) {
-            toast.error("Role not selected", { theme: "dark" });
+            toast.error("Role not selected", { position: "top-right"} );
             return;
         }
         if (role !== "YOUTUBER" && role !== "TALENT") {
-            toast.error("Invalid role", { theme: "dark" });
+            toast.error("Invalid role", { position: "top-right"} );
             return;
         }
 
@@ -47,12 +47,12 @@ export default function Page() {
             if (!response.ok) {
                 setLoading(false);
                 toast.error("Something went wrong!", {
-                    theme: 'dark'
+                    position: "top-right"
                 })
                 return;
             }
             toast.success("Check your email for the login link", {
-                theme: 'dark'
+                "position": "top-right"
             })
             localStorage.setItem("emailHold", email);
         } catch (error: any) {
@@ -67,7 +67,6 @@ export default function Page() {
         <PublicRoute>
 
             <main className="min-h-[90vh] flex flex-col items-center justify-center">
-                <ToastContainer />
                 <h1 className={`text-text  ${spaceGroteskRegular.className} heading tracking-tight mb-10`}>Welcome to Crimson</h1>
                 <div className={`body ${spaceGroteskMedium.className}  md:w-80 w-60 `}>
                     <div className="tabs">
