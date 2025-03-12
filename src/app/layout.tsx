@@ -4,6 +4,7 @@ import Navbar from "@/components/navbar";
 import AuthContextProvider from "@/components/providers/auth-context-provider";
 import Sidebar from "@/components/sidebar/sidebar";
 import ReactQueryProvider from "@/components/providers/react-query-provider";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Crimson | The Definitive Job Board for Youtubers",
@@ -22,6 +23,7 @@ export default function RootLayout({
           <ReactQueryProvider>
             <Navbar />
             <Sidebar />
+            <Toaster />
             {children}
           </ReactQueryProvider>
         </AuthContextProvider>

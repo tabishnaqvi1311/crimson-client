@@ -1,16 +1,20 @@
+import BackButton from "@/components/buttons/back-button";
 import Footer from "@/components/landing/footer";
 import { bricolageGrotesqueBold, spaceGroteskMedium } from "@/fonts";
 import Link from "next/link";
 
 export default function GoogleApiDisclosure() {
     return (
-        <main className='p-7 py-7 px-[7rem]'>
+        <main className='py-7 md:px-[7rem] px-4'>
             <div className="h-[80vh]">
-                <div>
-                    <h1 className={`${bricolageGrotesqueBold.className} text-4xl text-white`}>
-                        Google API Services Usage Disclosure
-                    </h1>
-                    <p className={spaceGroteskMedium.className}>Last Updated 21st February 2025</p>
+                <div className="flex items-center gap-2">
+                    <BackButton />
+                    <div>
+                        <h1 className={`${bricolageGrotesqueBold.className} text-4xl text-white`}>
+                            Google API Services Usage Disclosure
+                        </h1>
+                        <p className={spaceGroteskMedium.className}>Last Updated 21st February 2025</p>
+                    </div>
                 </div>
                 <p className={`mt-6 space-y-4 text-white text-lg ${spaceGroteskMedium.className}`}>
                     Crimson uses Google's Application Programming Interface (API) Services to improve the experience on our platform.

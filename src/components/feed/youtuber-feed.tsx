@@ -1,11 +1,9 @@
 import apiUrl from "@/constant/config";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../loading";
-import Image from "next/image";
-import { CircleUserRound } from "lucide-react";
 import { User } from "@/types";
 import Modal from "../modal/modal";
-import Link from "next/link";
+import TalentProfileCard from "../cards/talent-profile-card";
 
 
 export default function YoutuberFeed() {
@@ -32,24 +30,13 @@ export default function YoutuberFeed() {
     </p>
 
     return (
-        <>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 w-[95%]">
             {
                 query.data.users.map((talent: User) => (
-                    <Link key={talent.id} className="mt-4" href={`/profile/${talent.id}/TALENT`}>
-                        {talent.picture
-                            ?
-                            <Image src={talent.picture} alt="user" height={40} width={40} className="rounded-full" />
-                            :
-                            <CircleUserRound size={30} />
-                        }
-                        <div>
-                            <p className="text-lg text-primary">{talent.name}</p>
-                            <p className="text-sm text-gray-400">{talent.email}</p>
-                        </div>
-                    </Link>
+                    <TalentProfileCard key={talent.id} talent={talent}/>
                 ))
             }
             <Modal />
-        </>
+        </div>
     )
 }

@@ -3,7 +3,6 @@
 import { useAuth } from "@/hooks/useAuth";
 import PrivateRoute from "../guards/private-route";
 import ProgressBar from "./progress-bar";
-import { toast, ToastContainer } from "react-toastify";
 import LoadingSpinner from "../loading";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -12,6 +11,7 @@ import apiUrl from "@/constant/config";
 import { useMultiForm } from "@/hooks/useMutliForm";
 import { InitialData } from "@/types";
 import { descriptionFormSchema, salaryFormSchema, titleFormSchema, workLocationSchema, workTypeSchema } from "@/schemas";
+import toast from "react-hot-toast";
 
 const initialData: InitialData = {
     title: "",
@@ -60,9 +60,9 @@ export default function CreateJobForm() {
         const { schema, data: stepData } = stepValidations[currentStepIdx];
 
         const validated = schema.safeParse(stepData);
-        if(!validated.success){
+        if (!validated.success) {
             validated.error.issues.forEach((issue) => (
-               toast.error(issue.message)
+                toast.error(issue.message, { position: "top-right" })
             ))
             return;
         }
@@ -86,9 +86,9 @@ export default function CreateJobForm() {
             })
             if (!res.ok) throw new Error("An error occurred!")
             router.push("/jobs")
-            toast.success("Job posted successfully!")
+            toast.success("Job posted successfully!", { position: 'top-right' })
         } catch (e) {
-            toast.error("An error occurred!")
+            toast.error("An error occurred!", { position: "top-right" })
             console.log(e);
         }
 
@@ -125,7 +125,6 @@ export default function CreateJobForm() {
                         </button>
                     </div>
                 </form>
-                <ToastContainer />
             </main>
         </PrivateRoute>
     ) : <LoadingSpinner />

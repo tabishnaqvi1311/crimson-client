@@ -11,7 +11,7 @@ import { useEffect, useState } from "react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import EditStatusField from "./edit-status-field"
 import JobUpdateButton from "../buttons/job-update-button"
-import JobDeleteButton from "../buttons/job-delete-button"
+import DeleteModal from "../modal/delete-modal"
 
 // salary: string;
 // workLocation: "REMOTE" | "ONSITE" | "HYBRID";
@@ -141,7 +141,7 @@ export default function JobDrawer({
                                         isDeleting={isDeleting}
                                         isEditing={isEditing}
                                     />
-                                    <JobDeleteButton
+                                    <DeleteModal
                                         handleDelete={handleDelete}
                                         isPendingDeletion={deleteMutation.isPending}
                                         isPendingUpdation={updateMutation.isPending}

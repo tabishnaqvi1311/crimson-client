@@ -5,6 +5,7 @@ import ProfileLink from "../sidebar/profile-link";
 import { bricolageGrotesqueBold, spaceGroteskMedium } from "@/fonts";
 import { useAuth } from "@/hooks/useAuth";
 import { LogOut } from "lucide-react";
+import DeleteAccountModal from "../modal/delete-account-modal";
 
 function handleRedirect() {
     window.location.href = `${apiUrl}/v/verify-youtuber?token=${localStorage.getItem("crimson-token")}`;
@@ -75,12 +76,15 @@ export default function Account() {
 
             <hr className="w-full"/>
 
+            <h1 className={`${bricolageGrotesqueBold.className} text-lg text-primary`}>Danger</h1>
+
             <button 
                 className="flex gap-2 items-center btn btn-ghost hover:bg-primary"
                 onClick={logout} 
             >
                 <LogOut size={15}/> Logout
             </button>
+            <DeleteAccountModal/>
         </div>
     )
 }

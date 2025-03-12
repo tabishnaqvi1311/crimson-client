@@ -1,12 +1,16 @@
+import BackButton from "@/components/buttons/back-button";
 import Footer from "@/components/landing/footer";
 import { bricolageGrotesqueBold, spaceGroteskMedium } from "@/fonts";
 
 export default function Page() {
     return (
-        <main className="p-7 py-7 px-[7rem]">
-            <div className="mb-8">
-                <h1 className={`${bricolageGrotesqueBold.className} text-4xl text-white mb-4`}>Privacy Policy</h1>
-                <p className={`${spaceGroteskMedium.className}`}><strong>Last Updated:</strong> 10th March 2025</p>
+        <main className="py-7 md:px-[7rem] px-4">
+            <div className="mb-8 flex items-center gap-2">
+                <BackButton/>
+                <div>
+                    <h1 className={`${bricolageGrotesqueBold.className} text-4xl text-white`}>Privacy Policy</h1>
+                    <p className={`${spaceGroteskMedium.className}`}><strong>Last Updated:</strong> 10th March 2025</p>
+                </div>
             </div>
             <div className={`${spaceGroteskMedium.className} space-y-4 text-white text-lg`}>
                 <p className="mb-6">Welcome to Crimson! Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your information when you use our platform.</p>
