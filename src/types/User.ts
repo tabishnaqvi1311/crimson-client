@@ -1,3 +1,5 @@
+import { Job } from "./Job"
+
 export type User = {
     id: string,
     name: string,
@@ -16,6 +18,7 @@ export type Youtuber = User & {
         views: number,
         videos: number,
     }
+    postedJobs?: Job[]
 }
 
 export type Talent = User & {
