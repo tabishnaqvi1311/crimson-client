@@ -1,9 +1,10 @@
+// TODO: add infinite page results
 import apiUrl from "@/constant/config";
 import { useQuery } from "@tanstack/react-query";
-import LoadingSpinner from "../loading";
 import { User } from "@/types";
 import Modal from "../modal/modal";
 import TalentProfileCard from "../cards/talent-profile-card";
+import TalentCardSkeleton from "../skeletons/talent-card-skeleton";
 
 
 export default function YoutuberFeed() {
@@ -23,7 +24,7 @@ export default function YoutuberFeed() {
         }
     })
 
-    if (query.status === "pending") return <LoadingSpinner />
+    if (query.status === "pending") return <TalentCardSkeleton/>
 
     if (query.status === "error") return <p className="text-primary text-center">
         An error has occurred
