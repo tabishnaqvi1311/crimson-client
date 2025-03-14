@@ -75,6 +75,7 @@ export default function CreateJobForm() {
         e.preventDefault();
         if (!isLastStep) return handleNext();
         setIsSubmitting(true);
+        data.title = data.title.trim(); //if some moron enters a string with spaces
         try {
             const res = await fetch(`${apiUrl}/job/create`, {
                 method: "POST",
@@ -84,13 +85,22 @@ export default function CreateJobForm() {
                 },
                 body: JSON.stringify(data)
             })
-            if (!res.ok) throw new Error("An error occurred!")
+            if (!res.ok) {
+                const json = await res.json();
+                if(json.message === "not verified") {
+                    toast.error("You aren't verified yet, please verify to continue");
+                    router.push("/profile");
+                    return;
+                }
+                else throw new Error("Something went wrong");
+            }
             router.push("/jobs")
             toast.success("Job posted successfully!", { position: 'top-right' })
         } catch (e) {
             toast.error("An error occurred!", { position: "top-right" })
             console.log(e);
         }
+        // console.log(data)
 
         setIsSubmitting(false);
     }

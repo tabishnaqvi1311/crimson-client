@@ -5,6 +5,7 @@ import { User } from "@/types";
 import Modal from "../modal/modal";
 import TalentProfileCard from "../cards/talent-profile-card";
 import TalentCardSkeleton from "../skeletons/talent-card-skeleton";
+import GridWrapper from "../grid-card-wrapper";
 
 
 export default function YoutuberFeed() {
@@ -24,20 +25,20 @@ export default function YoutuberFeed() {
         }
     })
 
-    if (query.status === "pending") return <TalentCardSkeleton/>
+    if (query.status === "pending") return <TalentCardSkeleton />
 
     if (query.status === "error") return <p className="text-primary text-center">
         An error has occurred
     </p>
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 w-[95%]">
+        <GridWrapper>
             {
                 query.data.users.map((talent: User) => (
-                    <TalentProfileCard key={talent.id} talent={talent}/>
+                    <TalentProfileCard key={talent.id} talent={talent} />
                 ))
             }
             <Modal />
-        </div>
+        </GridWrapper>
     )
 }
