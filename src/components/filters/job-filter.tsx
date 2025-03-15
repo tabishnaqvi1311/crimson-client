@@ -30,16 +30,16 @@ export default function JobFilter({
     }
 
     return (
-        <div className={`${spaceGroteskMedium.className} w-[95%] flex items-center space-x-6 my-6`}>
+        <div className={`${spaceGroteskMedium.className} w-[95%] grid md:grid-cols-5 grid-cols-2 gap-6 my-6`}>
             <Select
-                title="Work Location"
+                title="Location"
                 filter={filters.workLocation}
                 handleFilterChange={handleFilterChange}
                 filterType="workLocation"
                 options={["REMOTE", "ONSITE", "HYBRID"]}
             />
             <Select
-                title="Work Type"
+                title="Type"
                 filter={filters.workType}
                 handleFilterChange={handleFilterChange}
                 filterType="workType"
