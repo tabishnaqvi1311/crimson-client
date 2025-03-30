@@ -2,7 +2,6 @@ import apiUrl from "@/constant/config";
 import { useAuth } from "@/hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import LoadingSpinner from "../loading";
 import GridWrapper from "../grid-card-wrapper";
 import { Application, ApplicationFilter as Filter } from "@/types";
 import ApplicationCard from "../cards/application-card";
@@ -10,6 +9,7 @@ import ApplicationDrawer from "../drawer/application-drawer";
 import ApplicationFilter from "../filters/application-filter";
 import { spaceGroteskMedium } from "@/fonts";
 import { ClipboardMinus } from "lucide-react";
+import JobCardSkeleton from "../skeletons/job-card-skeleton";
 
 export default function TalentView() {
 
@@ -40,7 +40,15 @@ export default function TalentView() {
         }
     })
 
-    if (query.status === "pending") return <LoadingSpinner />
+    if (query.status === "pending") return (
+        <>
+            <ApplicationFilter
+                filters={filters}
+                setFilters={setFilters}
+            />
+            <JobCardSkeleton />
+        </>
+    )
 
     if (query.status === "error") return <p className="text-primary text-center">
         An error has occurred </p>
