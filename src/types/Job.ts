@@ -16,4 +16,7 @@ export type Job = {
             subscribers: number
         }
     }
+    applications?: {
+        id: string
+    }[],
 }

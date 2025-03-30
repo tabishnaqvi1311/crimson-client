@@ -13,15 +13,21 @@ export default function Page() {
     return (
         <PrivateRoute>
             {
-                role === "YOUTUBER" ? 
+                role === "YOUTUBER" ?
                     <PageWrapper
-                        title="Your Posted Jobs"    
+                        title="Your Posted Jobs"
                         subtitle="Manage and track all the jobs you've posted."
                     >
                         <YoutuberView />
                     </PageWrapper>
-                    : role === "TALENT" ? <TalentView />
-                        : <LoadingSpinner />
+                : role === "TALENT" ?
+                        <PageWrapper
+                            title="Your Applications"
+                            subtitle="Manage and track all the jobs you've applied to."
+                        >
+                            <TalentView />
+                        </PageWrapper>
+                : <LoadingSpinner />
             }
         </PrivateRoute>
     )

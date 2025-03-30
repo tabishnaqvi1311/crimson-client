@@ -6,4 +6,18 @@ import FormWrapperProps from "./FormWrapperProps";
 import { Job } from "./Job";
 import { JobFilter } from "./JobFilter";
 import { FilterType } from "./JobFilter";
-export type { AuthContextType, TokenPayloadType, User, InitialData, FormWrapperProps, Job, JobFilter, FilterType };
+import { Application } from "./Application";
+import { ApplicationFilter } from "./ApplicationFilter";
+
+export type {
+    AuthContextType,
+    TokenPayloadType, 
+    User, 
+    InitialData, 
+    FormWrapperProps, 
+    Job, 
+    JobFilter, 
+    FilterType,
+    Application,
+    ApplicationFilter,
+};

@@ -12,6 +12,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import EditStatusField from "./edit-status-field"
 import JobUpdateButton from "../buttons/job-update-button"
 import DeleteModal from "../modal/delete-modal"
+import Apply from "../buttons/apply"
 
 // salary: string;
 // workLocation: "REMOTE" | "ONSITE" | "HYBRID";
@@ -200,10 +201,13 @@ export default function JobDrawer({
                         }
                         {
                             role === "TALENT" ?
-                                <button className="button-primary w-full border-none">
-                                    Apply Now
-                                    {/* add functionality to apply */}
-                                </button>
+                                <Apply
+                                    jobId={job.id}
+                                    applied={
+                                        job.applications?.length !== undefined 
+                                        && job.applications?.length > 0
+                                    }
+                                />
                                 :
                                 isEditing &&
                                 (
