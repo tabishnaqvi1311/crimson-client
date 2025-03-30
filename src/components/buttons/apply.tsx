@@ -64,7 +64,7 @@ export default function Apply({
                 </fieldset>
             }
             <button
-                className="button-primary w-full border-none disabled:bg-primary/10"
+               className="button-primary w-full border-none disabled:bg-primary/10 disabled:text-gray-300"
                 onClick={handleApply}
                 disabled={applied}
             >
