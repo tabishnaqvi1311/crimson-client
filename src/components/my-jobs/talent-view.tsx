@@ -32,8 +32,8 @@ export default function TalentView() {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem("crimson-token")}`
                 },
+                credentials: "include",
             })
             if (!response.ok) throw new Error(`request failed with status ${response.status}`);
             return await response.json();

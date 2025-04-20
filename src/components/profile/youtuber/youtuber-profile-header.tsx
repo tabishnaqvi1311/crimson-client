@@ -10,15 +10,16 @@ type YoutuberProfileHeaderProps = {
     role: string | null,
 }
 
-function handleRedirect() {
-    window.location.href = `${apiUrl}/v/verify-youtuber?token=${localStorage.getItem("crimson-token")}`;
-}
 
 export default function YoutuberProfileHeader({
     actualUser,
     user,
     role
 }: YoutuberProfileHeaderProps) {
+
+    function handleRedirect() {
+        window.location.href = `${apiUrl}/v/verify-youtuber?userId=${user.id}&role=${role}`;
+    }
     return (
         <div className="rounded-lg w-[90%] absolute">
             <div className="diagonal-div rounded-t-lg" />

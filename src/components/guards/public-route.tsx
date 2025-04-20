@@ -12,7 +12,7 @@ export default function PublicRoute({children}: {children: React.ReactNode}){
   
     useEffect(() => {
       if (!loading && isAuthenticated) {
-        router.push('/discover');
+        router.replace("/discover");
       }
     }, [isAuthenticated, loading, router]);
   

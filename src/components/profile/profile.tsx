@@ -26,8 +26,8 @@ export default function Profile() {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer ${localStorage.getItem("crimson-token")}`
-                    }
+                    },
+                    credentials: "include",
                 });
 
                 if (!res.ok) throw new Error("failed to get verified status");
@@ -73,8 +73,8 @@ export default function Profile() {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    'Authorization': `Bearer ${localStorage.getItem("crimson-token")}`
-                }
+                },
+                credentials: "include",
             });
             if (!response.ok) throw new Error("failed to fetch user profile");
             const json = await response.json();

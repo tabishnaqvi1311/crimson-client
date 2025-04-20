@@ -9,7 +9,7 @@ export default function Modal() {
 
     const modalRef = useRef<HTMLDialogElement>(null);
 
-    const { role, hasVerified } = useAuth();
+    const { role, hasVerified, userId } = useAuth();
 
     useEffect(() => {
         if (searchParams.get("show") === "true" && role === "YOUTUBER" && !hasVerified) {
@@ -31,8 +31,10 @@ export default function Modal() {
                     </p>
                 </div>
                 <div className="flex">
-                    <button className="button-primary">
-                        <a href={`${apiUrl}/v/verify-youtuber?token=${localStorage.getItem("crimson-token")}`}>Verify Your Account</a>
+                    <button className="button-primary" onClick={() => {
+                        window.location.href = `${apiUrl}/v/verify-youtuber?userId=${userId}&role=${role}`;
+                    }}>
+                        Verify now
                     </button>
                     <form method="dialog">
                         <button className="btn btn-link no-underline focus:outline-none text-background">Skip for now</button>
