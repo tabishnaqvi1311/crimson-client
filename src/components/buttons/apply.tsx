@@ -29,8 +29,8 @@ export default function Apply({
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem("crimson-token")}`
                 },
+                credentials: "include",
                 body: JSON.stringify({ coverLetter })
             })
             const json = await response.json();

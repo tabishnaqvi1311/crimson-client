@@ -81,8 +81,8 @@ export default function CreateJobForm() {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem("crimson-token")}`
                 },
+                credentials: "include",
                 body: JSON.stringify(data)
             })
             if (!res.ok) {

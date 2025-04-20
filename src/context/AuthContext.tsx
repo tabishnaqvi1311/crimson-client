@@ -1,6 +1,8 @@
-import { AuthContextType, TokenPayloadType } from "@/types";
-import { usePathname, useRouter } from "next/navigation";
-import { createContext, useCallback, useEffect, useState, } from "react";
+import apiUrl from "@/constant/config";
+import { AuthContextType } from "@/types";
+import { useRouter } from "next/navigation";
+import { createContext, useCallback, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -8,83 +10,75 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [userId, setUserId] = useState<string | null>(null);
     const [role, setRole] = useState<string | null>(null);
     const [picture, setPicture] = useState<string | null | undefined>(null);
-    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [hasVerified, setHasVerified] = useState<boolean>(false);
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
 
     const router = useRouter();
-    const pathname = usePathname();
 
-    const verify = (() => {
+    const verify = () => {
         setHasVerified(true);
-    })
+    };
 
-    const logout = useCallback(() => {
-        localStorage.removeItem("crimson-token");
-        setUserId(null);
-        setRole(null);
-        setPicture(null);
-        setIsAuthenticated(false);
-        setHasVerified(false);
-        setLoading(false);
-        router.push("/");
-    }, [router])
-
-    const checkAuth = useCallback(() => {
-        const generalPages = ["/terms", "/privacy", "/refund", "/google-api-disclosure", '/auth-hold', '/auth-sucess'];
-        if (generalPages.includes(pathname)) return;
-
-        const token = localStorage.getItem("crimson-token");
-
-        if (!token) {
-            if(pathname === "/signin") {
-                setLoading(false);
-                return;
-            } // if user is not logged in and is on signin page, do nothing
-            console.log("forbidden");
-            logout(); return;
+    const logout = useCallback(async () => {
+        setLoading(true);
+        try {
+            await fetch(`${apiUrl}/auth/logout`, {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setUserId(null);
+            setRole(null);
+            setPicture(null);
+            setIsAuthenticated(false);
+            setHasVerified(false);
+            setLoading(false);
+            router.replace("/");
         }
+    }, [router]);
 
-        let payload: TokenPayloadType = null;
+    const checkAuth = useCallback(async () => {
+        setLoading(true);
 
         try {
-            payload = JSON.parse(atob(token.split(".")[1]));
+            const res = await fetch(`${apiUrl}/auth/me`, {
+                credentials: 'include', headers: { 'Content-Type': 'application/json' }
+            });
+            const user = await res.json();
+            if (!res.ok || !user?.userId || !['TALENT', 'YOUTUBER'].includes(user.role)) {
+                return;
+            }
+            setUserId(user.userId);
+            setRole(user.role);
+            setPicture(user.picture);
+            setHasVerified(!!user.isVerified);
+            setIsAuthenticated(true);
+        } catch (error) {
+            console.error("Error checking auth", error);
+            toast.error("Signin Failed. Please try again.");
+            setUserId(null);
+            setRole(null);
+            setPicture(null);
+            setHasVerified(false);
+            setIsAuthenticated(false);
+        } finally {
+            setLoading(false);
         }
-        catch (error) {
-            console.log(error);
-            logout(); return;
-        }
-        if (!payload || !payload.userId || !payload.role || payload.exp * 1000 < Date.now()) {
-            console.log("Invalid token");
-            logout(); return;
-        }
+    }, []);
 
-        if(payload.role !== "TALENT" && payload.role !== "YOUTUBER"){
-            console.log("Invalid role");
-            logout(); return;
-        }
-
-        if(payload.role === "YOUTUBER") {
-            if(!payload.isVerified) setHasVerified(false);
-            else setHasVerified(true);
-        }
-
-        setUserId(payload.userId);
-        setRole(payload.role)
-        setPicture(payload.picture);
-        setIsAuthenticated(true);
-        setLoading(false);
-    }, [logout, pathname])
-
-    const login = useCallback((token: string) => {
-        localStorage.setItem("crimson-token", token);
-        checkAuth();
-        router.push("/discover?show=true");
-    }, [checkAuth, router])
+    const login = useCallback(async () => {
+        await checkAuth();
+    }, [checkAuth]);
 
     useEffect(() => {
         checkAuth();
-    }, [checkAuth])
+    }, [checkAuth]);
 
     return (
         <AuthContext.Provider
@@ -97,9 +91,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 picture,
                 hasVerified,
                 verify,
-                loading
-            }}>
+                loading,
+            }}
+        >
             {children}
         </AuthContext.Provider>
-    )
-}
+    );
+};

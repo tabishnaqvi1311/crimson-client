@@ -24,8 +24,8 @@ export default function DeleteAccountModal() {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem("crimson-token")}`
-                }
+                },
+                credentials: "include",
             })
             if (!response.ok) throw new Error("something went wrong");
             logout();

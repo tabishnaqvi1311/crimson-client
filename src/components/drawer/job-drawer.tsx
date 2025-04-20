@@ -52,8 +52,8 @@ export default function JobDrawer({
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem("crimson-token")}`
                 },
+                credentials: "include",
             });
             if (!response.ok) throw new Error("Failed to delete job");
             return response.json();
@@ -73,8 +73,8 @@ export default function JobDrawer({
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem("crimson-token")}`
                 },
+                credentials: "include",
                 body: JSON.stringify(job)
             });
             if (!response.ok) throw new Error("Failed to update job");

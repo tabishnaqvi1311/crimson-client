@@ -22,8 +22,8 @@ export default function Account() {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    'Authorization': `Bearer ${localStorage.getItem("crimson-token")}`
-                }
+                },
+                credentials: "include",
             });
             if (!response.ok) throw new Error("failed to fetch user profile");
             const json = await response.json();
