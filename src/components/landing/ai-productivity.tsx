@@ -62,7 +62,7 @@ export default function AiProductivity() {
                         AI that works <span className="text-primary">for you</span>, not the other way around
                     </h2>
                     <p className="text-zinc-400 md:text-xl">
-                        Stop wasting hours on tedious video tasks. Crimson's AI Agents handle the heavy lifting so you can focus on what matters: creating amazing content.
+                        Stop wasting hours on tedious video tasks. Crimson&apos;s AI Agents handle the heavy lifting so you can focus on what matters: creating amazing content.
                     </p>
                 </div>
 

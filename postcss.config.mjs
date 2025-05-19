@@ -1,12 +1,5 @@
 const config = {
   plugins: ["@tailwindcss/postcss"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-    "*.{js,ts,jsx,tsx,mdx}",
-  ],
   theme: {
     extend: {
       borderRadius: {

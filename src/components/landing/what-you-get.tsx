@@ -36,7 +36,7 @@ export default function WhatYouGet() {
                 <div className="flex flex-col items-center justify-center space-y-4 text-center">
                     <div className="inline-flex items-center rounded-full border border-primary/10 bg-zinc-800/50 px-3 py-1 text-sm">
                         <span className="text-primary mr-1">✦</span>
-                        <span>What you'll get</span>
+                        <span>What you&apos;ll get</span>
                     </div>
                     <div className="space-y-2">
                         <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Tools that do the heavy lifting</h2>

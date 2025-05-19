@@ -43,7 +43,7 @@ export default function NoMore() {
                                     <div className="flex justify-between items-center p-3 bg-accent rounded-lg border border-primary/30">
                                         <div className="flex items-center">
                                             <Sparkles className="h-5 w-5 text-primary mr-2" />
-                                            <span className="font-bold">Crimson's AI Agents</span>
+                                            <span className="font-bold">Crimson&apos;s AI Agents</span>
                                         </div>
                                         <span className="font-bold text-primary">$199 / month</span>
                                     </div>

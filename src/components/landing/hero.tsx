@@ -1,5 +1,4 @@
-import { ArrowRight, Sparkles } from "lucide-react";
-import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
 
 export default function Hero() {
