@@ -1,72 +1,68 @@
-import { bricolageGrotesqueBold, spaceGroteskRegular } from "@/fonts"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 
 const faq = [
     {
-        q: "What is this place?",
-        a: "Need an editor? A thumbnail designer? A scriptwriter? Post a job, find the perfect person, and keep your channel running the smart way. If you're a creative looking for work, this is where YouTubers come to hire."
+        q: "What exactly does Crimson do?",
+        a: "Crimson is your AI-powered sidekick for YouTube. It helps you brainstorm video ideas, write scripts, edit footage, design thumbnails, optimize for SEO, and even publish autonomously.",
     },
     {
-        q: "How does it work?",
-        a: "Post a job, and hire the perfect person for your project. If you're a professional, respond to job posts and get hired. It's that simple!"
+        q: "Do I still need to shoot my own footage?",
+        a: "We don't film for you. But once you've got the raw footage, we'll take it from there.",
     },
     {
-        q: "How much does it cost?",
-        a: "Nada. Zilch. Zero. Posting jobs and applying for them is completely free. We're here to help creators and talent connect without breaking the bank."
+        q: "How customizable is the content generated?",
+        a: "Very. You can tweak scripts, choose edit styles, pick thumbnail templates, and override any AI-generated output. You stay in control, we just makes it easier"
     },
     {
-        q: "Do I have to link my YouTube channel to post jobs?",
-        a: "Yep! We want to keep things legit and make sure only real YouTubers are posting. You'll be asked to link your channel at sign-up, but if you skip it, you can do it later from your profile.",
+        q: "What tools does Crimson integrate with?",
+        a: "We are currently working on integrations with popular platforms and are in development for more. If you have a specific tool in mind, let us know and we'll prioritize it!",
     },
     {
-        q: "How do I apply for a job?",
-        a: "Easy! If you're talent, just browse the job listings, click 'Apply' and follow the instructions. Some YouTubers might ask for a portfolio or samples, so be ready to flex your skills."
+        q: "Where do I sign up?",
+        a: "You can join our waitlist to be the first to know when we launch. We are currently in closed beta, but we will be opening up to more users soon.",
     },
     {
-        q: "How do I find the right person for my channel?",
-        a: "Once you post a job, applicants will roll in. You can check out their profiles, see past work, and pick the one that fits your vibe. Soon, Crimson will do most of the work for you!"
+        q: "Can I cancel anytime?",
+        a: "100%. No contracts, no lock-in. Cancel anytime right from your dashboard."
     },
     {
-        q: "I found the perfect hire! What now?",
-        a: "Nice! You can message them, discuss the details (pricing, deadlines, etc.), and get started. Everything happens between you and the talent—we just help make the connection."
-    },
-    {
-        q: "What if I'm not happy with the work?",
-        a: "That's rare, but it happens. We encourage clear communication upfront. If someone is acting shady, report them, and we'll look into it. If you're not satisfied with the work, you can leave a review to warn others."
-    },
-    {
-        q: "Can I post multiple jobs?",
-        a: "Absolutely! Whether you need an editor, a voice-over artist, and a scriptwriter all at once—or just need to replace Max because he disappeared again—you can post as many jobs as you need."
-    },
+        q: "Do you offer team or agency plans?",
+        a: "Yes! We have special plans for teams and agencies. Just reach out to us and we'll get you set up.",
+    }
 ]
-
 
 export default function FAQ() {
     return (
-        <section className="container mx-auto px-4 py-10" id="faq">
-            <div className="flex flex-col lg:flex-row gap-8">
-                <div className="lg:w-1/2">
-                    <h1 className={`${bricolageGrotesqueBold.className} text-3xl sm:text-4xl font-bold mb-6 text-text`}>Frequently Asked Questions</h1>
-                    <p>Have another question? Contact me on&nbsp;
-                        <a href="https://x.com/gunhawke23" className="link">Twitter</a>
-                        &nbsp;or by&nbsp;
-                        <a href="mailto:tabish.naqvi2003@gmail.com" className="link">Email</a>.</p>
+        <section id="faq" className="py-16 bg-zinc-950 relative">
+            {/* Quirky pattern */}
+            <div className="absolute left-0 top-0 h-full w-1/4 overflow-hidden pointer-events-none">
+                <div className="absolute left-10 top-1/3 w-3 h-3 bg-primary/30 rounded-full"></div>
+                <div className="absolute left-20 top-2/3 w-2 h-2 bg-primary/20 rounded-full"></div>
+                <div className="absolute left-40 top-1/4 w-4 h-4 bg-primary/10 rounded-full"></div>
+            </div>
+
+            <div className="px-4 md:px-6 relative">
+                <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                    <div className="space-y-2">
+                        <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Common questions</h2>
+                        <p className="max-w-[700px] text-zinc-400 md:text-xl ">
+                            Things you might be wondering about Crimson.
+                        </p>
+                    </div>
                 </div>
-                <div className="lg:w-1/2 space-y-4 mb-4">
-                    {
-                        faq.map((item, index) => {
-                            return (
-                                <div className="join join-vertical w-full divide-y" key={index}>
-                                    <div className="collapse collapse-plus join-item border-b border-gray-700">
-                                        <input type="radio" name={`faq`} className="peer" />
-                                        <div className={`${bricolageGrotesqueBold.className}  collapse-title text-xl font-medium peer-checked:text-accent`}>{item.q}</div>
-                                        <div className="collapse-content">
-                                            <p className={`${spaceGroteskRegular.className} text-lg`}>{item.a}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })
-                    }
+                <div className="mx-auto max-w-3xl mt-12">
+                    <Accordion type="single" collapsible className="w-full">
+                        {faq.map((item, index) => (
+                            <AccordionItem key={index} value={`item-${index}`} className="border-zinc-800">
+                                <AccordionTrigger className="text-left hover:text-primary text-lg">
+                                    {item.q}
+                                </AccordionTrigger>
+                                <AccordionContent className="text-zinc-400 text-base">
+                                    {item.a}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </Accordion>
                 </div>
             </div>
         </section>

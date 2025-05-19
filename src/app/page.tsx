@@ -1,30 +1,23 @@
-import PublicRoute from "@/components/guards/public-route";
-import CTA from "@/components/landing/cta";
+import Footer from "@/components/footer";
+import AiProductivity from "@/components/landing/ai-productivity";
 import FAQ from "@/components/landing/faq";
-import Features from "@/components/landing/features";
-import Footer from "@/components/landing/footer";
 import Hero from "@/components/landing/hero";
-// import Pricing from "@/components/landing/pricing";
+import NoMore from "@/components/landing/no-more";
+import Pricing from "@/components/landing/pricing";
+import WhatYouGet from "@/components/landing/what-you-get";
 
-//TODO: detect if user is logged in and redirect to dashboard
-
-
-export default function Page() {
+export default function Home() {
   return (
-    <PublicRoute>
-      <div className="min-h-screen">
-        <div className="main">
-          <div className="gradient"/>
-        </div>
-        <div className="">
-          <Hero />
-          <Features />
-          {/* <Pricing /> */}
-          <FAQ/>
-          <CTA />
-          <Footer />
-        </div>
-      </div>
-    </PublicRoute>
+    <div className="flex min-h-screen flex-col ">
+      <main className="flex-1">
+        <Hero />
+        <AiProductivity/>
+        <NoMore/>
+        <WhatYouGet/>
+        <Pricing/>
+        <FAQ/>
+        <Footer/>
+      </main>
+    </div>
   )
 }
