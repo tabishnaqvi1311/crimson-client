@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
+
+import { cn } from "@/lib/utils"
+import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/navbar";
-import AuthContextProvider from "@/components/providers/auth-context-provider";
-import Sidebar from "@/components/sidebar/sidebar";
-import ReactQueryProvider from "@/components/providers/react-query-provider";
-import { Toaster } from "react-hot-toast";
+
+const fontGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-grotesk",
+})
 
 export const metadata: Metadata = {
-  title: "Crimson | The Definitive Job Board for Youtubers",
-  description: "Crimson is the go-to job board designed exclusively for YouTubers, content creators, and video professionals. Whether you're looking for collaborations, sponsorships, editors, thumbnail designers, or other creator-focused opportunities, Crimson connects you with the right talent and gigs. Find jobs, hire experts, and grow your YouTube career with ease.",
+  title: "Crimson | Your YouTube Sidekick",
+  description: "Crimson aims to automate everything from ideation to publishing, so you can grow your youtube channel faster with less hassle.",
 };
 
 export default function RootLayout({
@@ -17,16 +22,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <AuthContextProvider>
-          <ReactQueryProvider>
-            <Navbar />
-            <Sidebar />
-            <Toaster />
-            {children}
-          </ReactQueryProvider>
-        </AuthContextProvider>
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body
+        className={cn("min-h-screen bg-zinc-900 text-zinc-100 selection:bg-primary selection:text-white",fontGrotesk.className)}
+      >
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+          <Navbar/>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

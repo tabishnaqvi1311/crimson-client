@@ -1,25 +1,42 @@
-import { bricolageGrotesqueBold, spaceGroteskMedium } from "@/fonts";
-import Link from "next/link";
-// import HeroBg from "./hero-background";
+import { ArrowRight, Sparkles } from "lucide-react";
+import Image from "next/image";
+import { Button } from "../ui/button";
 
 export default function Hero() {
     return (
-        <>
-            <section className="py-20 px-4 sm:px-6 lg:px-8">
-                <div className="container mx-auto text-center">
-                {/* <HeroBg /> */}
-                    <h1 className={`text-4xl sm:text-5xl md:text-6xl mb-6 leading-tight tracking-tight text-text ${bricolageGrotesqueBold.className}`}>Where&nbsp;
-                        <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent ">Youtubers and Talent</span>&nbsp;Connect
-                    </h1>
-                    <p className={`${spaceGroteskMedium.className} text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto`}>
-                        Crimson is the definitive job board for YouTubers to find skilled professionals and for talent to discover exciting opportunities in content creation.
-                    </p>
-                    <div className={`space-x-4 ${spaceGroteskMedium.className}`}>
-                        <Link href={"/signin"} className="btn btn-ghost bg-primary hover:bg-primary px-6 hover:px-8  transition-all duration-200 text-text text-lg">Post A Job</Link>
-                        <Link href={'/signin'} className="btn btn-ghost bg-accent hover:bg-accent px-6 hover:px-8 transition-all duration-200 text-text text-lg">Find Work</Link>
-                    </div>
+        <section className="relative py-20 md:py-28 overflow-hidden">
+            {/* Background patterns */}
+            <div className="absolute top-20 right-[20%] w-64 h-64 md:bg-primary/20 bg-primary/5 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 left-[10%] w-72 h-72 md:bg-primary/10 bg-primary/10 rounded-full blur-3xl"></div>
+
+
+            <div className="flex flex-col items-center justify-center space-y-4 px-4 md:px-6 text-center">
+                <div className="inline-flex items-center rounded-full border border-primary/20 bg-zinc-800/50 px-3 py-1 text-sm w-fit">
+                    <span className="flex h-2 w-2 rounded-full bg-primary mr-2"></span>
+                    <span>Currently in beta</span>
                 </div>
-            </section>
-        </>
+                <div className="space-y-2 flex flex-col items-center">
+                    <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+                        Supercharge Your YouTube Channel with <br/> AI-Powered Production.
+                    </h1>
+                    <p className="max-w-[600px] text-zinc-400 md:text-xl">
+                        From brainstorming to publishing, Crimson helps creators like you make better videos in half the
+                        time.
+                    </p>
+                </div>
+                <div className="flex flex-col gap-2 min-[400px]:flex-row">
+                    <Button className="group">
+                        Join Waitlist
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                    <Button
+                        variant="outline"
+                        className="border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-800"
+                    >
+                        See How It Works
+                    </Button>
+                </div>
+            </div>
+        </section>
     )
 }
